@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loongrise.dao.AviationMaterialDao">
+
+    <resultMap type="com.loongrise.entity.AviationMaterial" id="amMap">
+        <id column="am_id" property="amId"/>
+        <result column="am_name" property="amName"/>
+        <result column="am_desc" property="amDesc"/>
+        <result column="am_expire_time" property="amExpireTime"/>
+        <result column="am_qualified_num" property="amQualifiedNum"/>
+        <result column="am_serial_num" property="amSerialNum"/>
+        <result column="am_used_time" property="amUsedTime"/>
+        <association property="aviationMaterialCate" column="am_category_id" javaType="com.loongrise.entity.AviationMaterialCate">
+            <id column="am_category_id" property="amCategoryId"/>
+            <result column="am_category_name" property="amCategoryName"/>
+        </association>
+    </resultMap>
+
+    <select id="queryAmById" parameterType="Long" resultMap="amMap">
+		SELECT
+		a.am_id,
+		a.am_name,
+		a.am_desc,
+		a.am_expire_time,
+		a.am_qualified_num,
+		a.am_serial_num,
+		a.am_used_time,
+		ac.am_category_id,
+		ac.am_category_name
+		FROM
+		am a
+		LEFT JOIN
+		am_category ac
+		ON
+		a.am_category_id = ac.am_category_id
+		WHERE
+		am_id = #{amId};
+	</select>
+
+    <select id="queryAmList" resultMap="amMap">
+		SELECT
+		a.am_id,
+		a.am_name,
+		a.am_desc,
+		a.am_expire_time,
+		a.am_qualified_num,
+		a.am_serial_num,
+		a.am_used_time,
+		ac.am_category_id,
+		ac.am_category_name
+		FROM
+		am a
+		LEFT JOIN
+		am_category ac
+		ON
+		a.am_category_id = ac.am_category_id
+	</select>
+
+    <select id="queryAmListByAmCateId" resultMap="amMap">
+		SELECT
+		a.am_id,
+		a.am_name,
+		a.am_desc,
+		a.am_expire_time,
+		a.am_qualified_num,
+		a.am_serial_num,
+		a.am_used_time,
+		ac.am_category_id,
+		ac.am_category_name
+		FROM
+		am a
+		LEFT JOIN
+		am_category ac
+		ON
+		a.am_category_id = ac.am_category_id
+		WHERE
+		a.am_category_id = #{amCategoryId};
+	</select>
+
+
+    <insert id="insertAm" useGeneratedKeys="true" keyColumn="am_id" keyProperty="amId" parameterType="com.loongrise.entity.AviationMaterial">
+		INSERT INTO
+		am(am_name,am_desc,am_expire_time,am_qualified_num,am_serial_num,am_used_time,am_category_id)
+		VALUES(#{amName},#{amDesc},#{amExpireTime},#{amQualifiedNum},#{amSerialNum},#{amUsedTime},#{aviationMaterialCate.amCategoryId});
+	</insert>
+
+    <update id="updateAm" parameterType="com.loongrise.entity.AviationMaterial">
+        UPDATE am
+        <set>
+            <if test="amName != null">am_name = #{amName},</if>
+            <if test="amDesc != null">am_desc = #{amDesc}</if>
+        </set>
+        WHERE
+        am_id = #{amId}
+    </update>
+
+    <delete id="deleteAmById" parameterType="Long">
+		DELETE FROM
+		am
+		WHERE
+		am_id = #{amId};
+	</delete>
+</mapper>

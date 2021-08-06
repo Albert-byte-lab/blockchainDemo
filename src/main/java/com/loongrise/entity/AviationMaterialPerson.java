@@ -8,7 +8,7 @@ import java.util.Date;
 public class AviationMaterialPerson {
     private long amPersonId;
     private AviationMaterial aviationMaterial;
-    private PersonInfo personInfo;
+    private UserInfo userInfo;
     private Date amManufactureTime;
     private Date amDesignTime;
     private Date amInstallTime;
@@ -30,12 +30,12 @@ public class AviationMaterialPerson {
         this.aviationMaterial = aviationMaterial;
     }
 
-    public PersonInfo getPersonInfo() {
-        return personInfo;
+    public UserInfo getPersonInfo() {
+        return userInfo;
     }
 
-    public void setPersonInfo(PersonInfo personInfo) {
-        this.personInfo = personInfo;
+    public void setPersonInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
     }
 
     public Date getAmManufactureTime() {

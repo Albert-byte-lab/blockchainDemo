@@ -9,7 +9,7 @@ public class LocalAuth {
 
     private Long localAuthId;
     //账户所属用户
-    private PersonInfo personInfo;
+    private UserInfo userInfo;
     private String username;
     private String password;
     private Date cTime;
@@ -23,12 +23,12 @@ public class LocalAuth {
         this.localAuthId = localAuthId;
     }
 
-    public PersonInfo getPersonInfo() {
-        return personInfo;
+    public UserInfo getPersonInfo() {
+        return userInfo;
     }
 
-    public void setPersonInfo(PersonInfo personInfo) {
-        this.personInfo = personInfo;
+    public void setPersonInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
     }
 
     public String getUsername() {
