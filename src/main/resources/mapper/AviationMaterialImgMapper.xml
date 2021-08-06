@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.loongrise.dao.AviationMaterialImgMapper" >
+  <resultMap id="BaseResultMap" type="com.loongrise.entity.AviationMaterialImg" >
+    <id column="am_img_id" property="am_img_id" jdbcType="INTEGER" />
+    <result column="am_img_desc" property="am_img_desc" jdbcType="VARCHAR" />
+    <result column="am_img_addr" property="am_img_addr" jdbcType="VARCHAR" />
+    <result column="am_id" property="am_id" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    am_img_id, am_img_desc, am_img_addr, am_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from am_img
+    where am_img_id = #{am_img_id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from am_img
+    where am_img_id = #{am_img_id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.loongrise.entity.AviationMaterialImg" >
+    insert into am_img (am_img_id, am_img_desc, am_img_addr, 
+      am_id)
+    values (#{am_img_id,jdbcType=INTEGER}, #{am_img_desc,jdbcType=VARCHAR}, #{am_img_addr,jdbcType=VARCHAR}, 
+      #{am_id,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.loongrise.entity.AviationMaterialImg" >
+    insert into am_img
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="am_img_id != null" >
+        am_img_id,
+      </if>
+      <if test="am_img_desc != null" >
+        am_img_desc,
+      </if>
+      <if test="am_img_addr != null" >
+        am_img_addr,
+      </if>
+      <if test="am_id != null" >
+        am_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="am_img_id != null" >
+        #{am_img_id,jdbcType=INTEGER},
+      </if>
+      <if test="am_img_desc != null" >
+        #{am_img_desc,jdbcType=VARCHAR},
+      </if>
+      <if test="am_img_addr != null" >
+        #{am_img_addr,jdbcType=VARCHAR},
+      </if>
+      <if test="am_id != null" >
+        #{am_id,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.loongrise.entity.AviationMaterialImg" >
+    update am_img
+    <set >
+      <if test="am_img_desc != null" >
+        am_img_desc = #{am_img_desc,jdbcType=VARCHAR},
+      </if>
+      <if test="am_img_addr != null" >
+        am_img_addr = #{am_img_addr,jdbcType=VARCHAR},
+      </if>
+      <if test="am_id != null" >
+        am_id = #{am_id,jdbcType=INTEGER},
+      </if>
+    </set>
+    where am_img_id = #{am_img_id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.loongrise.entity.AviationMaterialImg" >
+    update am_img
+    set am_img_desc = #{am_img_desc,jdbcType=VARCHAR},
+      am_img_addr = #{am_img_addr,jdbcType=VARCHAR},
+      am_id = #{am_id,jdbcType=INTEGER}
+    where am_img_id = #{am_img_id,jdbcType=INTEGER}
+  </update>
+</mapper>

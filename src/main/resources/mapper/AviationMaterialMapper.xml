@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.loongrise.dao.AviationMaterialMapper" >
+  <resultMap id="BaseResultMap" type="com.loongrise.entity.AviationMaterial" >
+    <id column="am_id" property="am_id" jdbcType="INTEGER" />
+    <result column="am_name" property="am_name" jdbcType="VARCHAR" />
+    <result column="am_desc" property="am_desc" jdbcType="VARCHAR" />
+    <result column="am_category_id" property="am_category_id" jdbcType="INTEGER" />
+    <result column="am_expire_time" property="am_expire_time" jdbcType="INTEGER" />
+    <result column="am_qualified_num" property="am_qualified_num" jdbcType="VARCHAR" />
+    <result column="am_serial_num" property="am_serial_num" jdbcType="VARCHAR" />
+    <result column="am_used_time" property="am_used_time" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    am_id, am_name, am_desc, am_category_id, am_expire_time, am_qualified_num, am_serial_num, 
+    am_used_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from am
+    where am_id = #{am_id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from am
+    where am_id = #{am_id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.loongrise.entity.AviationMaterial" >
+    insert into am (am_id, am_name, am_desc, 
+      am_category_id, am_expire_time, am_qualified_num, 
+      am_serial_num, am_used_time)
+    values (#{am_id,jdbcType=INTEGER}, #{am_name,jdbcType=VARCHAR}, #{am_desc,jdbcType=VARCHAR}, 
+      #{am_category_id,jdbcType=INTEGER}, #{am_expire_time,jdbcType=INTEGER}, #{am_qualified_num,jdbcType=VARCHAR}, 
+      #{am_serial_num,jdbcType=VARCHAR}, #{am_used_time,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.loongrise.entity.AviationMaterial" >
+    insert into am
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="am_id != null" >
+        am_id,
+      </if>
+      <if test="am_name != null" >
+        am_name,
+      </if>
+      <if test="am_desc != null" >
+        am_desc,
+      </if>
+      <if test="am_category_id != null" >
+        am_category_id,
+      </if>
+      <if test="am_expire_time != null" >
+        am_expire_time,
+      </if>
+      <if test="am_qualified_num != null" >
+        am_qualified_num,
+      </if>
+      <if test="am_serial_num != null" >
+        am_serial_num,
+      </if>
+      <if test="am_used_time != null" >
+        am_used_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="am_id != null" >
+        #{am_id,jdbcType=INTEGER},
+      </if>
+      <if test="am_name != null" >
+        #{am_name,jdbcType=VARCHAR},
+      </if>
+      <if test="am_desc != null" >
+        #{am_desc,jdbcType=VARCHAR},
+      </if>
+      <if test="am_category_id != null" >
+        #{am_category_id,jdbcType=INTEGER},
+      </if>
+      <if test="am_expire_time != null" >
+        #{am_expire_time,jdbcType=INTEGER},
+      </if>
+      <if test="am_qualified_num != null" >
+        #{am_qualified_num,jdbcType=VARCHAR},
+      </if>
+      <if test="am_serial_num != null" >
+        #{am_serial_num,jdbcType=VARCHAR},
+      </if>
+      <if test="am_used_time != null" >
+        #{am_used_time,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.loongrise.entity.AviationMaterial" >
+    update am
+    <set >
+      <if test="am_name != null" >
+        am_name = #{am_name,jdbcType=VARCHAR},
+      </if>
+      <if test="am_desc != null" >
+        am_desc = #{am_desc,jdbcType=VARCHAR},
+      </if>
+      <if test="am_category_id != null" >
+        am_category_id = #{am_category_id,jdbcType=INTEGER},
+      </if>
+      <if test="am_expire_time != null" >
+        am_expire_time = #{am_expire_time,jdbcType=INTEGER},
+      </if>
+      <if test="am_qualified_num != null" >
+        am_qualified_num = #{am_qualified_num,jdbcType=VARCHAR},
+      </if>
+      <if test="am_serial_num != null" >
+        am_serial_num = #{am_serial_num,jdbcType=VARCHAR},
+      </if>
+      <if test="am_used_time != null" >
+        am_used_time = #{am_used_time,jdbcType=INTEGER},
+      </if>
+    </set>
+    where am_id = #{am_id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.loongrise.entity.AviationMaterial" >
+    update am
+    set am_name = #{am_name,jdbcType=VARCHAR},
+      am_desc = #{am_desc,jdbcType=VARCHAR},
+      am_category_id = #{am_category_id,jdbcType=INTEGER},
+      am_expire_time = #{am_expire_time,jdbcType=INTEGER},
+      am_qualified_num = #{am_qualified_num,jdbcType=VARCHAR},
+      am_serial_num = #{am_serial_num,jdbcType=VARCHAR},
+      am_used_time = #{am_used_time,jdbcType=INTEGER}
+    where am_id = #{am_id,jdbcType=INTEGER}
+  </update>
+</mapper>

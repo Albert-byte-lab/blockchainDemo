@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.loongrise.dao.RFIDMapper" >
+  <resultMap id="BaseResultMap" type="com.loongrise.entity.RFID" >
+    <id column="rfid_id" property="rfid_id" jdbcType="INTEGER" />
+    <result column="epc" property="epc" jdbcType="VARCHAR" />
+    <result column="tid" property="tid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    rfid_id, epc, tid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from rfid
+    where rfid_id = #{rfid_id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from rfid
+    where rfid_id = #{rfid_id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.loongrise.entity.RFID" >
+    insert into rfid (rfid_id, epc, tid
+      )
+    values (#{rfid_id,jdbcType=INTEGER}, #{epc,jdbcType=VARCHAR}, #{tid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.loongrise.entity.RFID" >
+    insert into rfid
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rfid_id != null" >
+        rfid_id,
+      </if>
+      <if test="epc != null" >
+        epc,
+      </if>
+      <if test="tid != null" >
+        tid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rfid_id != null" >
+        #{rfid_id,jdbcType=INTEGER},
+      </if>
+      <if test="epc != null" >
+        #{epc,jdbcType=VARCHAR},
+      </if>
+      <if test="tid != null" >
+        #{tid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.loongrise.entity.RFID" >
+    update rfid
+    <set >
+      <if test="epc != null" >
+        epc = #{epc,jdbcType=VARCHAR},
+      </if>
+      <if test="tid != null" >
+        tid = #{tid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where rfid_id = #{rfid_id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.loongrise.entity.RFID" >
+    update rfid
+    set epc = #{epc,jdbcType=VARCHAR},
+      tid = #{tid,jdbcType=VARCHAR}
+    where rfid_id = #{rfid_id,jdbcType=INTEGER}
+  </update>
+</mapper>

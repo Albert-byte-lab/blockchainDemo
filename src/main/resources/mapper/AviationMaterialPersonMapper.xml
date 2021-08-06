@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.loongrise.dao.AviationMaterialPersonMapper" >
+  <resultMap id="BaseResultMap" type="com.loongrise.entity.AviationMaterialPerson" >
+    <id column="am_person_id" property="am_person_id" jdbcType="INTEGER" />
+    <result column="am_id" property="am_id" jdbcType="INTEGER" />
+    <result column="user_id" property="user_id" jdbcType="INTEGER" />
+    <result column="am_manufacture_time" property="am_manufacture_time" jdbcType="TIMESTAMP" />
+    <result column="am_design_time" property="am_design_time" jdbcType="TIMESTAMP" />
+    <result column="am_install_time" property="am_install_time" jdbcType="TIMESTAMP" />
+    <result column="am_fix_time" property="am_fix_time" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    am_person_id, am_id, user_id, am_manufacture_time, am_design_time, am_install_time, 
+    am_fix_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from am_person
+    where am_person_id = #{am_person_id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from am_person
+    where am_person_id = #{am_person_id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.loongrise.entity.AviationMaterialPerson" >
+    insert into am_person (am_person_id, am_id, user_id, 
+      am_manufacture_time, am_design_time, 
+      am_install_time, am_fix_time)
+    values (#{am_person_id,jdbcType=INTEGER}, #{am_id,jdbcType=INTEGER}, #{user_id,jdbcType=INTEGER}, 
+      #{am_manufacture_time,jdbcType=TIMESTAMP}, #{am_design_time,jdbcType=TIMESTAMP}, 
+      #{am_install_time,jdbcType=TIMESTAMP}, #{am_fix_time,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.loongrise.entity.AviationMaterialPerson" >
+    insert into am_person
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="am_person_id != null" >
+        am_person_id,
+      </if>
+      <if test="am_id != null" >
+        am_id,
+      </if>
+      <if test="user_id != null" >
+        user_id,
+      </if>
+      <if test="am_manufacture_time != null" >
+        am_manufacture_time,
+      </if>
+      <if test="am_design_time != null" >
+        am_design_time,
+      </if>
+      <if test="am_install_time != null" >
+        am_install_time,
+      </if>
+      <if test="am_fix_time != null" >
+        am_fix_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="am_person_id != null" >
+        #{am_person_id,jdbcType=INTEGER},
+      </if>
+      <if test="am_id != null" >
+        #{am_id,jdbcType=INTEGER},
+      </if>
+      <if test="user_id != null" >
+        #{user_id,jdbcType=INTEGER},
+      </if>
+      <if test="am_manufacture_time != null" >
+        #{am_manufacture_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="am_design_time != null" >
+        #{am_design_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="am_install_time != null" >
+        #{am_install_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="am_fix_time != null" >
+        #{am_fix_time,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.loongrise.entity.AviationMaterialPerson" >
+    update am_person
+    <set >
+      <if test="am_id != null" >
+        am_id = #{am_id,jdbcType=INTEGER},
+      </if>
+      <if test="user_id != null" >
+        user_id = #{user_id,jdbcType=INTEGER},
+      </if>
+      <if test="am_manufacture_time != null" >
+        am_manufacture_time = #{am_manufacture_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="am_design_time != null" >
+        am_design_time = #{am_design_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="am_install_time != null" >
+        am_install_time = #{am_install_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="am_fix_time != null" >
+        am_fix_time = #{am_fix_time,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where am_person_id = #{am_person_id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.loongrise.entity.AviationMaterialPerson" >
+    update am_person
+    set am_id = #{am_id,jdbcType=INTEGER},
+      user_id = #{user_id,jdbcType=INTEGER},
+      am_manufacture_time = #{am_manufacture_time,jdbcType=TIMESTAMP},
+      am_design_time = #{am_design_time,jdbcType=TIMESTAMP},
+      am_install_time = #{am_install_time,jdbcType=TIMESTAMP},
+      am_fix_time = #{am_fix_time,jdbcType=TIMESTAMP}
+    where am_person_id = #{am_person_id,jdbcType=INTEGER}
+  </update>
+</mapper>
