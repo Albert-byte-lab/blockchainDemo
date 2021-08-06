@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * 用户信息实体类
  */
-public class PersonInfo {
+public class UserInfo {
     private long userId;
     //用户所属类别: 1:飞机制造商工程部门，2:零部件供应商，3:飞机制造商总装配厂，4:航司，5:飞机修理厂
     private Integer userType;
