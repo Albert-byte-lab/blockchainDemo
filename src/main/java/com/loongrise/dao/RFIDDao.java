@@ -10,5 +10,5 @@ public interface RFIDDao {
 
     List<RFID> queryRFIDList();
 
-    RFID queryRFID(int rfidId);
+    RFID queryRFIDById(int rfidId);
 }

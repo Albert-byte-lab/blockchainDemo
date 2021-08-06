@@ -2,31 +2,31 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.loongrise.dao.AviationMaterialCateDao">
+<mapper namespace="com.loongrise.dao.RFIDDao">
 
 
-    <select id="queryAmcById" parameterType="Long" resultType="com.loongrise.entity.AviationMaterialCate">
+    <select id="queryRFIDById" parameterType="Long" resultType="com.loongrise.entity.RFID">
 		SELECT
-        am_category_id,
-        am_category_name
+        epc
+        tid
 		FROM
-		am_category
+		rfid
 		WHERE
-		am_category_id = #{amCategoryId};
+		rfid_id = #{rfidId};
 	</select>
 
-    <select id="queryAllAmcList" resultType="com.loongrise.entity.AviationMaterialCate">
+    <select id="queryRFIDList" resultType="com.loongrise.entity.RFID">
 		SELECT
-        am_category_id,
-        am_category_name
+        epc,
+        tid
 		FROM
-		am_category
+		rfid
 	</select>
 
     <insert id="insertRFID" useGeneratedKeys="true" keyColumn="rfid_id" keyProperty="rfidId" parameterType="com.loongrise.entity.RFID">
 		INSERT INTO
 		rfid(epc,tid)
-		VALUES(#{amCategoryName});
+		VALUES(#{epc},#{tid});
 	</insert>
 
 
