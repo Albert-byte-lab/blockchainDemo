@@ -12,10 +12,7 @@
         <result column="am_qualified_num" property="amQualifiedNum"/>
         <result column="am_serial_num" property="amSerialNum"/>
         <result column="am_used_time" property="amUsedTime"/>
-        <association property="aviationMaterialCate" column="am_category_id" javaType="com.loongrise.entity.AviationMaterialCate">
-            <id column="am_category_id" property="amCategoryId"/>
-            <result column="am_category_name" property="amCategoryName"/>
-        </association>
+        <result column="am_category" property="amCategory"/>
     </resultMap>
 
     <select id="queryAmById" parameterType="Long" resultMap="amMap">
@@ -27,14 +24,9 @@
 		a.am_qualified_num,
 		a.am_serial_num,
 		a.am_used_time,
-		ac.am_category_id,
-		ac.am_category_name
+		a.am_category
 		FROM
 		am a
-		LEFT JOIN
-		am_category ac
-		ON
-		a.am_category_id = ac.am_category_id
 		WHERE
 		am_id = #{amId};
 	</select>
@@ -48,42 +40,18 @@
 		a.am_qualified_num,
 		a.am_serial_num,
 		a.am_used_time,
-		ac.am_category_id,
-		ac.am_category_name
+		a.am_category
 		FROM
 		am a
-		LEFT JOIN
-		am_category ac
-		ON
-		a.am_category_id = ac.am_category_id
 	</select>
 
-    <select id="queryAmListByAmCateId" resultMap="amMap">
-		SELECT
-		a.am_id,
-		a.am_name,
-		a.am_desc,
-		a.am_expire_time,
-		a.am_qualified_num,
-		a.am_serial_num,
-		a.am_used_time,
-		ac.am_category_id,
-		ac.am_category_name
-		FROM
-		am a
-		LEFT JOIN
-		am_category ac
-		ON
-		a.am_category_id = ac.am_category_id
-		WHERE
-		a.am_category_id = #{amCategoryId};
-	</select>
+
 
 
     <insert id="insertAm" useGeneratedKeys="true" keyColumn="am_id" keyProperty="amId" parameterType="com.loongrise.entity.AviationMaterial">
 		INSERT INTO
-		am(am_name,am_desc,am_expire_time,am_qualified_num,am_serial_num,am_used_time,am_category_id)
-		VALUES(#{amName},#{amDesc},#{amExpireTime},#{amQualifiedNum},#{amSerialNum},#{amUsedTime},#{aviationMaterialCate.amCategoryId});
+		am(am_name,am_desc,am_expire_time,am_qualified_num,am_serial_num,am_used_time,am_category)
+		VALUES(#{amName},#{amDesc},#{amExpireTime},#{amQualifiedNum},#{amSerialNum},#{amUsedTime},#{amCategory});
 	</insert>
 
     <update id="updateAm" parameterType="com.loongrise.entity.AviationMaterial">
