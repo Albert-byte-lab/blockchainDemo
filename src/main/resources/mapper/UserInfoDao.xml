@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loongrise.dao.UserInfoDao">
+
+
+    <select id="queryUserInfoById" parameterType="Long" resultType="com.loongrise.entity.UserInfo">
+		SELECT
+        user_type,
+        name,
+        desc,
+        address
+		FROM
+		user_info
+		WHERE
+		user_id = #{userId};
+	</select>
+
+
+
+</mapper>

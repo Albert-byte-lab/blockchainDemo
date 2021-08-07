@@ -15,12 +15,7 @@ public interface AviationMaterialDao {
      */
     AviationMaterial queryAmById(long amId);
 
-    /**
-     * 根据零部件所属类型id来获取该类别下的所有零部件
-     * @param amCategoryId
-     * @return
-     */
-    List<AviationMaterial> queryAmListByAmCateId(long amCategoryId);
+
 
     /**
      * 获取所有的零部件信息
