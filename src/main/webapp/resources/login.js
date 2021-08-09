@@ -41,13 +41,13 @@ $(function(){
 						if(userId == 2){
 							window.location.href = "/blockchainDemo/admin/index";
 						}else if(userId == 1){
-							window.location.href = "/blockchainDemo/admin/index2";
+							window.location.href = "/blockchainDemo/admin/make_index";
 						}else if(userId == 3){
-                            window.location.href = "/blockchainDemo/admin/index3";
+                            window.location.href = "/blockchainDemo/admin/assembPlant_index";
                         }else if(userId == 4){
-                        	window.location.href = "/blockchainDemo/admin/index4";
+                        	window.location.href = "/blockchainDemo/admin/airline_index";
                     	}else if(userId == 5){
-                       	 	window.location.href = "/blockchainDemo/admin/index5";
+                       	 	window.location.href = "/blockchainDemo/admin/repair_index";
                     	}
 
 					}else{

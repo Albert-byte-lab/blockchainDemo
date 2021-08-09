@@ -16,21 +16,21 @@ public class AdminController {
     public String index() {
         return "/index";
     }
-    @RequestMapping(value = "/index2",method = {RequestMethod.GET})
+    @RequestMapping(value = "/make_index",method = {RequestMethod.GET})
     public String index2() {
-        return "/index2";
+        return "make_index";
     }
-    @RequestMapping(value = "/index3",method = {RequestMethod.GET})
+    @RequestMapping(value = "/assembPlant_index",method = {RequestMethod.GET})
     public String index3() {
-        return "/index3";
+        return "assembPlant_index";
     }
-    @RequestMapping(value = "/index4",method = {RequestMethod.GET})
+    @RequestMapping(value = "/airline_index",method = {RequestMethod.GET})
     public String index4() {
-        return "/index4";
+        return "airline_index";
     }
-    @RequestMapping(value = "/index5",method = {RequestMethod.GET})
+    @RequestMapping(value = "/repair_index",method = {RequestMethod.GET})
     public String index5() {
-        return "/index5";
+        return "repair_index";
     }
     @RequestMapping(value = "/welcome")
     public String welcome() {

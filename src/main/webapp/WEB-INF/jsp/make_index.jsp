@@ -88,11 +88,11 @@
             <ul class="sidebar-menu">
                 <li class="treeview">
                     <a href="javascript:void(0)">
-                        <i class="fa fa-cog"></i><span>飞机制造商总装配厂</span><i class="fa fa-angle-left pull-right"></i>
+                        <i class="fa fa-cog"></i><span>飞机制造商工程部门</span><i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
                         <li onclick="makecss(this)" data-id="index_Admin">
-                            <a href='/blockchainDemo/am/showam' target='rightContent'><i class="fa fa-circle-o"></i>装配厂信息列表</a>
+                            <a href='/blockchainDemo/am/make' target='rightContent'><i class="fa fa-circle-o"></i>零部件制造信息列表</a>
                         </li></ul>
                 </li>
 
