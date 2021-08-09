@@ -10,4 +10,7 @@ public interface AviationMaterialService {
 
     //增加零部件
     int addAm(AviationMaterial aviationMaterial);
+
+    //获取新增零部件的id值
+    long getNewId();
 }

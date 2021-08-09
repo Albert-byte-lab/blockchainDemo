@@ -86,6 +86,7 @@ $(function(){
 	
 	$('#submit').click(function(){
 		var am = {};
+		var rfid={};
 		// if(isEdit){
 		// 	course.courseId = courseId;
 		// }
@@ -97,10 +98,15 @@ $(function(){
 			am.amSerialNum =$('#amSerialNum').val();
 			am.amUsedTime =$('#amUsedTime').val();
 			alert(am.amName)
+
+			rfid.epc=$('#epc').val();
+			rfid.tid=$('#tid').val();
+			alert(rfid.epc)
 			// 生成表单对象，用于接收参数并传递给后台
 			var formData = new FormData();
 			
 			formData.append('amStr',JSON.stringify(am));
+			formData.append('rfidStr',JSON.stringify(rfid));
 			
 			$.ajax({
 				url: addAmUrl,

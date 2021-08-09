@@ -7,8 +7,9 @@
 
     <select id="queryRFIDById" parameterType="Long" resultType="com.loongrise.entity.RFID">
 		SELECT
-        epc
-        tid
+        epc,
+        tid,
+        am_id
 		FROM
 		rfid
 		WHERE
@@ -18,15 +19,16 @@
     <select id="queryRFIDList" resultType="com.loongrise.entity.RFID">
 		SELECT
         epc,
-        tid
+        tid,
+        am_id
 		FROM
 		rfid
 	</select>
 
     <insert id="insertRFID" useGeneratedKeys="true" keyColumn="rfid_id" keyProperty="rfidId" parameterType="com.loongrise.entity.RFID">
 		INSERT INTO
-		rfid(epc,tid)
-		VALUES(#{epc},#{tid});
+		rfid(epc,tid,am_id)
+		VALUES(#{epc},#{tid},#{amId});
 	</insert>
 
 

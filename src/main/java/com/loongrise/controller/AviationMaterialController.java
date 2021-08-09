@@ -2,8 +2,11 @@ package com.loongrise.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.loongrise.entity.AviationMaterial;
+import com.loongrise.entity.History;
+import com.loongrise.entity.RFID;
 import com.loongrise.service.AviationMaterialCateService;
 import com.loongrise.service.AviationMaterialService;
+import com.loongrise.service.RFIDService;
 import com.loongrise.util.HttpServletRequestUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +27,9 @@ public class AviationMaterialController {
     @Autowired
     private AviationMaterialService aviationMaterialService;
 
+    @Autowired
+    private RFIDService rfidService;
+
     @RequestMapping(value="/showam",method= RequestMethod.GET)
     private ModelAndView showAm(HttpServletRequest request){
         ModelAndView model = null;
@@ -40,15 +46,28 @@ public class AviationMaterialController {
     private Map<String,Object> addAm(HttpServletRequest request){
         Map<String,Object> modelMap = new HashMap<>();
         String amStr = HttpServletRequestUtil.getString(request,"amStr");
+        String rfidStr = HttpServletRequestUtil.getString(request,"rfidStr");
         ObjectMapper mapper = new ObjectMapper();
         AviationMaterial am = null;
+        RFID rfid = null;
         try{
             am = mapper.readValue(amStr,AviationMaterial.class);
+            rfid = mapper.readValue(rfidStr,RFID.class);
+            System.out.println("epc值为: "+rfid.getEpc());
+            System.out.println("tid值为: "+rfid.getTid());
             System.out.println(am.getAmName());
-            if(am != null){
+            if(am != null && rfid != null){
                 int num = aviationMaterialService.addAm(am);
                 if(num > 0){
-                    modelMap.put("success",true);
+                    //获取新增零部件的id值
+                    long newId = aviationMaterialService.getNewId();
+                    System.out.println("新增零部件的Id为:"+newId);
+                    rfid.setAmId(newId);
+                    //之后将新增的id及rfid标签信息一起加入到rfid表中
+                  int t =   rfidService.addRFID(rfid);
+                  if(t > 0){
+                      modelMap.put("success",true);
+                  }
                 }
             }
         }catch (IOException e){

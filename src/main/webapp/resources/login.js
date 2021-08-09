@@ -38,7 +38,12 @@ $(function(){
 					if(data.success){
 						alert("登录成功！欢迎您:"+ name);
 						//登录成功后，跳转到index页面;
-						window.location.href = "/blockchainDemo/admin/index";
+						if(userId == 2){
+							window.location.href = "/blockchainDemo/admin/index";
+						}else if(userId == 1){
+
+						}
+
 					}else{
 						alert("   登录失败!  " + "   用户名或密码不正确!");
 					}	
