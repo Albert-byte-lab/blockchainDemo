@@ -15,7 +15,11 @@ public interface AviationMaterialDao {
      */
     AviationMaterial queryAmById(long amId);
 
-
+    /**
+     * 获取新增记录的id值
+     * @return
+     */
+    long queryNewId();
 
     /**
      * 获取所有的零部件信息

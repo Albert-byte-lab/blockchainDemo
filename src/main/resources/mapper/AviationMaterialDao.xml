@@ -45,6 +45,13 @@
 		am a
 	</select>
 
+	<select id="queryNewId" resultType="long">
+		SELECT
+		MAX(am_id)
+		FROM
+		am
+	</select>
+
 
 
 

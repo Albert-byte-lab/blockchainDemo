@@ -7,6 +7,7 @@ public class RFID {
     private long rfidId;
     private String epc;
     private String tid;
+    private long amId;
 
     public long getRfidId() {
         return rfidId;
@@ -30,5 +31,13 @@ public class RFID {
 
     public void setTid(String tid) {
         this.tid = tid;
+    }
+
+    public long getAmId() {
+        return amId;
+    }
+
+    public void setAmId(long amId) {
+        this.amId = amId;
     }
 }

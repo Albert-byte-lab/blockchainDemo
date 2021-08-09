@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loongrise.dao.HistoryDao">
+
+
+    <select id="queryHistoryList"  resultType="com.loongrise.entity.History">
+		SELECT
+        prev_id,
+        next_id,
+        hashcode,
+        epc,
+        tid,
+        name,
+        address,
+        date
+		FROM
+		history
+	</select>
+
+    <insert id="insertHistory" useGeneratedKeys="true" keyColumn="history_id" keyProperty="historyId" parameterType="com.loongrise.entity.History">
+        INSERT INTO history(prev_id,next_id,hashcode,epc,tid,name,address,date)
+        VALUES(#{pre.historyId},#{next.historyId},#{hashCode},#{epc},#{tid},#{name},#{address},#{date});
+	</insert>
+
+
+
+</mapper>

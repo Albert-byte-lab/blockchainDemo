@@ -186,6 +186,21 @@
                         </td>
                         <td></td>
                     </tr>
+
+                    <tr>
+                        <td>RFID epc值:</td>
+                        <td>
+                            <input type="text" id="epc" name="epc" class="form-control"/>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>RFID tid值:</td>
+                        <td>
+                            <input type="text" id="tid" name="tid" class="form-control"/>
+                        </td>
+                        <td></td>
+                    </tr>
                     <tr>
                         <td></td>
                         <td>
