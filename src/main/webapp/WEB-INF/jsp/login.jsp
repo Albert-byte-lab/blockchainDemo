@@ -12,10 +12,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Free HTML5 Template by FreeHTML5.co" />
 	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
-
-
-
-
   	<!-- Facebook and Twitter integration -->
 	<meta property="og:title" content=""/>
 	<meta property="og:image" content=""/>
@@ -31,11 +27,9 @@
 	<link rel="shortcut icon" href="../resources/login/favicon.ico">
 
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
-
 	<link rel="stylesheet" href="../resources/login/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../resources/login/css/animate.css">
 	<link rel="stylesheet" href="../resources/login/css/style.css">
-
 
 	<!-- Modernizr JS -->
 	<script src="../resources/login/js/modernizr-2.6.2.min.js"></script>

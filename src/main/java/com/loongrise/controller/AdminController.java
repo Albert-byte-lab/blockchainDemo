@@ -16,6 +16,22 @@ public class AdminController {
     public String index() {
         return "/index";
     }
+    @RequestMapping(value = "/index2",method = {RequestMethod.GET})
+    public String index2() {
+        return "/index2";
+    }
+    @RequestMapping(value = "/index3",method = {RequestMethod.GET})
+    public String index3() {
+        return "/index3";
+    }
+    @RequestMapping(value = "/index4",method = {RequestMethod.GET})
+    public String index4() {
+        return "/index4";
+    }
+    @RequestMapping(value = "/index5",method = {RequestMethod.GET})
+    public String index5() {
+        return "/index5";
+    }
     @RequestMapping(value = "/welcome")
     public String welcome() {
         return  "/welcome";

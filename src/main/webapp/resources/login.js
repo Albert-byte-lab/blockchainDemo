@@ -41,8 +41,14 @@ $(function(){
 						if(userId == 2){
 							window.location.href = "/blockchainDemo/admin/index";
 						}else if(userId == 1){
-
-						}
+							window.location.href = "/blockchainDemo/admin/index2";
+						}else if(userId == 3){
+                            window.location.href = "/blockchainDemo/admin/index3";
+                        }else if(userId == 4){
+                        	window.location.href = "/blockchainDemo/admin/index4";
+                    	}else if(userId == 5){
+                       	 	window.location.href = "/blockchainDemo/admin/index5";
+                    	}
 
 					}else{
 						alert("   登录失败!  " + "   用户名或密码不正确!");
