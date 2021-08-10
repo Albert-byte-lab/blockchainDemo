@@ -47,6 +47,52 @@ public class AviationMaterialController {
         return model;
     }
 
+    @RequestMapping(value="/make",method= RequestMethod.GET)
+    private ModelAndView showAm2(HttpServletRequest request){
+        ModelAndView model = null;
+        List<AviationMaterial> aviationMaterialList = aviationMaterialService.getAviationMaterialList();
+        if(aviationMaterialList != null){
+            request.setAttribute("make_list",aviationMaterialList);
+            model = new ModelAndView("make_list");
+        }
+        return model;
+    }
+
+
+
+    @RequestMapping(value="/assembPlant",method= RequestMethod.GET)
+    private ModelAndView showAm3(HttpServletRequest request){
+        ModelAndView model = null;
+        List<AviationMaterial> aviationMaterialList = aviationMaterialService.getAviationMaterialList();
+        if(aviationMaterialList != null){
+            request.setAttribute("assembPlant_list",aviationMaterialList);
+            model = new ModelAndView("assembPlant_list");
+        }
+        return model;
+    }
+
+    @RequestMapping(value="/airline",method= RequestMethod.GET)
+    private ModelAndView showAm4(HttpServletRequest request){
+        ModelAndView model = null;
+        List<AviationMaterial> aviationMaterialList = aviationMaterialService.getAviationMaterialList();
+        if(aviationMaterialList != null){
+            request.setAttribute("airline_list",aviationMaterialList);
+            model = new ModelAndView("airline_list");
+        }
+        return model;
+    }
+
+    @RequestMapping(value="/repair",method= RequestMethod.GET)
+    private ModelAndView showAm5(HttpServletRequest request){
+        ModelAndView model = null;
+        List<AviationMaterial> aviationMaterialList = aviationMaterialService.getAviationMaterialList();
+        if(aviationMaterialList != null){
+            request.setAttribute("repair_list",aviationMaterialList);
+            model = new ModelAndView("repair_list");
+        }
+        return model;
+    }
+
     @RequestMapping(value="/addam",method = RequestMethod.POST)
     @ResponseBody
     private Map<String,Object> addAm(HttpServletRequest request){
