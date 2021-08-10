@@ -334,7 +334,6 @@
             layer.msg('发送失败');
         }
     }
-    
 </script>
 </body>
 </html>
