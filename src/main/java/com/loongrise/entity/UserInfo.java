@@ -18,6 +18,7 @@ public class UserInfo {
     private Date cTime;
     private Date leTime;
 
+
     public long getUserId() {
         return userId;
     }

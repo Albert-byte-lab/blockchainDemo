@@ -13,4 +13,7 @@ public interface AviationMaterialService {
 
     //获取新增零部件的id值
     long getNewId();
+
+    //根据id获取零部件信息
+    AviationMaterial getAmById(long amId);
 }

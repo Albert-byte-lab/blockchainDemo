@@ -24,4 +24,9 @@ public class HistoryServiceImpl implements HistoryService {
     public int addHistory(History history) {
         return historyDao.insertHistory(history);
     }
+
+    @Override
+    public List<History> getHistoryListByAmId(long amId) {
+        return historyDao.queryHistoryListByAmId(amId);
+    }
 }

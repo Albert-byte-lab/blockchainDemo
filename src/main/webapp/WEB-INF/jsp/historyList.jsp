@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>飞行零部件全生命周期管理系统</title>
+<title>Yoga</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
@@ -144,9 +144,12 @@
 		<section class="content">
 			<div class="container-fluid">
 				<div class="panel panel-default">
+					<div class="pull-right">
+						<a href="javascript:history.go(-1)" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="返回"><i class="fa fa-reply"></i></a>
+					</div>
 					<div class="panel-heading">
 						<h3 class="panel-title">
-							<i class="fa fa-list"></i> 零部件列表
+							<i class="fa fa-list"></i> 历史记录表
 						</h3>
 					</div>
 					<div class="panel-body">
@@ -154,11 +157,8 @@
 							<form action="" id="search-form2" class="navbar-form form-inline"
 								method="post" onsubmit="return false">
 								<div class="form-group">
-									<a href="/blockchainDemo/am/showam"
-										class = "btn btn-primary pull-left">Refresh</a>
+
 								</div>
-								<a href="/blockchainDemo/admin/amadd"
-									class="btn btn-info pull-right">新增零部件</a>
 							</form>
 						</div>
 						<div id="ajax_return">
@@ -171,38 +171,39 @@
 												<td class="text-right"><a
 													href="javascript:sort('user_id');">ID</a></td>
 												<td class="text-left"><a
-													href="javascript:sort('username');">零部件名称</a></td>
+													href="javascript:sort('username');">上一个结点</a></td>
 												<td class="text-left"><a
-													href="javascript:sort('level');">简介</a></td>
+													href="javascript:sort('level');">下一个结点</a></td>
 												<td class="text-left"><a
-														href="javascript:sort('level');">所属类别</a></td>
+														href="javascript:sort('level');">hash值</a></td>
 												<td class="text-left"><a
-														href="javascript:sort('level');">零部件使用年限</a></td>
+														href="javascript:sort('level');">epc</a></td>
 												<td class="text-left"><a
-														href="javascript:sort('level');">质量合格证编号</a></td>
+														href="javascript:sort('level');">tid</a></td>
 												<td class="text-left"><a
-														href="javascript:sort('level');">产品序列号</a></td>
+														href="javascript:sort('level');">当前所处结点</a></td>
 												<td class="text-left"><a
-														href="javascript:sort('level');">已使用次数</a></td>
-												<td class="text-right">操作</td>
+														href="javascript:sort('level');">address</a></td>
+												<td class="text-left"><a
+														href="javascript:sort('level');">date</a></td>
+												<td class="text-left"><a
+														href="javascript:sort('level');">所属零部件ID</a></td>
+
 											</tr>
 										</thead>
 										<tbody class ="user-list">
-										  <c:forEach items="${amList}" var="u">
+										  <c:forEach items="${historyList}" var="u">
 											<tr>
-												<td class="text-right">${u.amId}</td>
-												<td class="text-left">${u.amName}</td>
-												<td class="text-left">${u.amDesc}</td>
-												<td class="text-left">${u.amCategory}</td>
-												<td class="text-left">${u.amExpireTime}</td>
-												<td class="text-left">${u.amQualifiedNum}</td>
-												<td class="text-left">${u.amSerialNum}</td>
-												<td class="text-left">${u.amUsedTime}</td>
-												<td class="text-right"><a
-														href="/blockchainDemo/history/showhistorybyamid?amId=${u.amId}"
-														data-toggle="tooltip" title="" class="btn btn-info"
-														data-original-title=""><i>Track</i></a>
-												</td>
+												<td class="text-right">${u.historyId}</td>
+												<td class="text-left">${u.pre.historyId}</td>
+												<td class="text-left">${u.next.historyId}</td>
+												<td class="text-left">${u.hashCode}</td>
+												<td class="text-left">${u.epc}</td>
+												<td class="text-left">${u.tid}</td>
+												<td class="text-left">${u.name}</td>
+												<td class="text-left">${u.address}</td>
+												<td class="text-left">${u.date}</td>
+												<td class="text-left">${u.amId}</td>
 											</tr>
 										</c:forEach>
 										</tbody>
@@ -237,7 +238,7 @@
         cur_page = page; //当前页面 保存为全局变量
             $.ajax({
                 type : "POST",
-                url:"../resources/Public"+"/index/Admin/user/ajaxindex/p/"+page,//+tab,
+                url:"../resources/afterend/Public"+"/index/Admin/user/ajaxindex/p/"+page,//+tab,
                 data : $('#'+tab).serialize(),// 你的formid
                 success: function(data){
                     $("#ajax_return").html('');

@@ -10,4 +10,7 @@ public interface HistoryDao {
 
     //查看所有的历史记录信息
     List<History> queryHistoryList();
+
+    //根据amId获取对应的历史记录
+    List<History> queryHistoryListByAmId(long amId);
 }

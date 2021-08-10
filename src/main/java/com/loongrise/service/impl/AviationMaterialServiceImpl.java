@@ -26,4 +26,9 @@ public class AviationMaterialServiceImpl implements AviationMaterialService {
     public long getNewId() {
         return aviationMaterialDao.queryNewId();
     }
+
+    @Override
+    public AviationMaterial getAmById(long amId) {
+        return aviationMaterialDao.queryAmById(amId);
+    }
 }

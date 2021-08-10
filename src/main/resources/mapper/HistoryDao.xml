@@ -7,6 +7,7 @@
 
     <select id="queryHistoryList"  resultType="com.loongrise.entity.History">
 		SELECT
+		history_id,
         prev_id,
         next_id,
         hashcode,
@@ -14,14 +15,33 @@
         tid,
         name,
         address,
-        date
+        date,
+        am_id
 		FROM
 		history
 	</select>
 
+    <select id="queryHistoryListByAmId"  resultType="com.loongrise.entity.History">
+		SELECT
+		history_id,
+        prev_id,
+        next_id,
+        hashcode,
+        epc,
+        tid,
+        name,
+        address,
+        date,
+        am_id
+		FROM
+		history
+		WHERE
+		am_id = #{amId};
+	</select>
+
     <insert id="insertHistory" useGeneratedKeys="true" keyColumn="history_id" keyProperty="historyId" parameterType="com.loongrise.entity.History">
-        INSERT INTO history(prev_id,next_id,hashcode,epc,tid,name,address,date)
-        VALUES(#{pre.historyId},#{next.historyId},#{hashCode},#{epc},#{tid},#{name},#{address},#{date});
+        INSERT INTO history(prev_id,next_id,hashcode,epc,tid,name,address,date,am_id)
+        VALUES(#{pre.historyId},#{next.historyId},#{hashCode},#{epc},#{tid},#{name},#{address},#{date},#{amId});
 	</insert>
 
 

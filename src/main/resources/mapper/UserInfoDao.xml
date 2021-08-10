@@ -7,10 +7,7 @@
 
     <select id="queryUserInfoById" parameterType="Long" resultType="com.loongrise.entity.UserInfo">
 		SELECT
-        user_type,
-        name,
-        desc,
-        address
+		*
 		FROM
 		user_info
 		WHERE
