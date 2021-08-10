@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>飞行零部件全生命周期管理系统</title>
+<title>Yoga</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
@@ -184,7 +184,7 @@
 														href="javascript:sort('level');">产品序列号</a></td>
 												<td class="text-left"><a
 														href="javascript:sort('level');">已使用次数</a></td>
-												<td class="text-right">操作</td>
+
 											</tr>
 										</thead>
 										<tbody class ="user-list">
@@ -198,11 +198,6 @@
 												<td class="text-left">${u.amQualifiedNum}</td>
 												<td class="text-left">${u.amSerialNum}</td>
 												<td class="text-left">${u.amUsedTime}</td>
-												<td class="text-right"><a
-														href="/blockchainDemo/history/showhistorybyamid?amId=${u.amId}"
-														data-toggle="tooltip" title="" class="btn btn-info"
-														data-original-title=""><i>Track</i></a>
-												</td>
 											</tr>
 										</c:forEach>
 										</tbody>
@@ -237,7 +232,7 @@
         cur_page = page; //当前页面 保存为全局变量
             $.ajax({
                 type : "POST",
-                url:"../resources/Public"+"/index/Admin/user/ajaxindex/p/"+page,//+tab,
+                url:"../resources/afterend/Public"+"/index/Admin/user/ajaxindex/p/"+page,//+tab,
                 data : $('#'+tab).serialize(),// 你的formid
                 success: function(data){
                     $("#ajax_return").html('');

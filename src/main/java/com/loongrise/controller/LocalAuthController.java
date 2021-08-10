@@ -22,7 +22,10 @@ import java.util.Map;
 public class LocalAuthController {
 
     @Autowired
+    private UserInfoService userInfoService;
+    @Autowired
     private LocalAuthService localAuthService;
+
 
     @RequestMapping(value="/tologin",method= RequestMethod.POST)
     @ResponseBody
@@ -41,10 +44,16 @@ public class LocalAuthController {
         }
         LocalAuth result = localAuthService.getLocalAuthBypwd(localAuth);
         if(result != null){
+            UserInfo userInfo = new UserInfo();
+            userInfo = userInfoService.getUserInfoById(userId);
+            System.out.println("用户姓名:"+userInfo.getName());
+            System.out.println("用户DESC:"+userInfo.getDesc());
+            System.out.println("用户address:"+userInfo.getAddress());
             LocalAuth newLocalAuth = new LocalAuth();
             newLocalAuth.setUsername(result.getUsername());
             newLocalAuth.setPassword(result.getPassword());
             request.getSession().setAttribute("localAuth",newLocalAuth);
+            request.getSession().setAttribute("userInfo",userInfo);
             modelMap.put("success",true);
             System.out.println(11111111);
             return modelMap;

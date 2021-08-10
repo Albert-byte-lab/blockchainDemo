@@ -40,7 +40,7 @@
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b></b></span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><img src="../resources/Public/images/ego_logo.png" width="40" height="30">&nbsp;&nbsp;<b>飞行零部件全生命周期管理系统</b></span>
+            <span class="logo-lg"><img src="../resources/Public/images/ego_logo.png" width="40" height="30">&nbsp;&nbsp;<b>零部件全生命</b></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">

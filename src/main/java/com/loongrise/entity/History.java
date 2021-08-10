@@ -20,6 +20,17 @@ public class History {
     private String address;
     private Date date;
 
+    //对应的零部件
+    private long  amId;
+
+    public long getAmId() {
+        return amId;
+    }
+
+    public void setAmId(long amId) {
+        this.amId = amId;
+    }
+
     public long getHistoryId() {
         return historyId;
     }

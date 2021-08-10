@@ -4,8 +4,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.loongrise.entity.AviationMaterial;
 import com.loongrise.entity.History;
 import com.loongrise.entity.RFID;
+import com.loongrise.entity.UserInfo;
 import com.loongrise.service.AviationMaterialCateService;
 import com.loongrise.service.AviationMaterialService;
+import com.loongrise.service.HistoryService;
 import com.loongrise.service.RFIDService;
 import com.loongrise.util.HttpServletRequestUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +32,9 @@ public class AviationMaterialController {
 
     @Autowired
     private RFIDService rfidService;
+
+    @Autowired
+    private HistoryService historyService;
 
     @RequestMapping(value="/showam",method= RequestMethod.GET)
     private ModelAndView showAm(HttpServletRequest request){
@@ -65,7 +71,22 @@ public class AviationMaterialController {
                     rfid.setAmId(newId);
                     //之后将新增的id及rfid标签信息一起加入到rfid表中
                   int t =   rfidService.addRFID(rfid);
-                  if(t > 0){
+                  //获取当前结点Name address desc
+                    UserInfo userInfo = (UserInfo) request.getSession().getAttribute("userInfo");
+                    System.out.println("address:"+userInfo.getAddress());
+                    History history = new History();
+                    history.setPre(null);
+                    history.setNext(null);
+                    history.setAddress(userInfo.getAddress());
+                    history.setAmId(newId);
+                    history.setEpc(rfid.getEpc());
+                    history.setTid(rfid.getTid());
+                    history.setName(userInfo.getName());
+                    history.setAddress(userInfo.getAddress());
+                    history.setDate(new Date());
+                    history.setHashCode("tt");
+                    int h = historyService.addHistory(history);
+                  if(t > 0 && h > 0){
                       modelMap.put("success",true);
                   }
                 }

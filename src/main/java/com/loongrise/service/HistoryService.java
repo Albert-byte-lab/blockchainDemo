@@ -9,4 +9,6 @@ public interface HistoryService {
     List<History> getHistoryList();
 
     int addHistory(History history);
+
+    List<History> getHistoryListByAmId(long amId);
 }
