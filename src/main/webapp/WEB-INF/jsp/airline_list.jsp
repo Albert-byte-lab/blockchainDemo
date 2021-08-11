@@ -24,7 +24,7 @@
     <!-- Theme style -->
 <link href="../resources/Public/dist/css/AdminLTE.min.css" rel="stylesheet"
 	type="text/css" />
-<!-- AdminLTE Skins. Choose a skin from the css/skins 
+<!-- AdminLTE Skins. Choose a skin from the css/skins
     	folder instead of downloading all of them to reduce the load. -->
 <link href="../resources/Public/dist/css/skins/_all-skins.min.css"
 	rel="stylesheet" type="text/css" />
@@ -69,12 +69,12 @@
     		}
     	);
     }
-    
+
     //全选
     function selectAll(name,obj){
     	$('input[name*='+name+']').prop('checked', $(obj).checked);
-    }   
-    
+    }
+
     function get_help(obj){
         layer.open({
             type: 2,
@@ -82,10 +82,10 @@
             shadeClose: true,
             shade: 0.3,
             area: ['90%', '90%'],
-            content: $(obj).attr('data-url'), 
+            content: $(obj).attr('data-url'),
         });
     }
-    
+
     function delAll(obj,name){
     	var a = [];
     	$('input[name*='+name+']').each(function(i,o){
@@ -121,7 +121,7 @@
     			layer.close(index);
     			return false;// 取消
     		}
-    	);	
+    	);
     }
     </script>
 <meta name="__hash__"
@@ -197,6 +197,11 @@
 												<td class="text-left">${u.amQualifiedNum}</td>
 												<td class="text-left">${u.amSerialNum}</td>
 												<td class="text-left">${u.amUsedTime}</td>
+												<td class="text-right"><a
+														href="/blockchainDemo/history/showhistorybyamid?amId=${u.amId}"
+														data-toggle="tooltip" title="" class="btn btn-info"
+														data-original-title=""><i>Track</i></a>
+												</td>
 											</tr>
 										</c:forEach>
 										</tbody>
@@ -334,7 +339,7 @@
             layer.msg('发送失败');
         }
     }
-    
+
 </script>
 </body>
 </html>

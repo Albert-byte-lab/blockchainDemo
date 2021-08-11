@@ -197,6 +197,11 @@
 												<td class="text-left">${u.amQualifiedNum}</td>
 												<td class="text-left">${u.amSerialNum}</td>
 												<td class="text-left">${u.amUsedTime}</td>
+												<td class="text-right"><a
+														href="/blockchainDemo/history/showhistorybyamid?amId=${u.amId}"
+														data-toggle="tooltip" title="" class="btn btn-info"
+														data-original-title=""><i>Track</i></a>
+												</td>
 											</tr>
 										</c:forEach>
 										</tbody>
