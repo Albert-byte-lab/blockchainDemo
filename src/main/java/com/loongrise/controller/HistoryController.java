@@ -42,6 +42,18 @@ public class HistoryController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/showcharts",method = RequestMethod.GET)
+    private ModelAndView showChart(HttpServletRequest request){
+        ModelAndView modelAndView = null;
+        long amId = HttpServletRequestUtil.getLong(request,"amId");
+        AviationMaterial am = aviationMaterialService.getAmById(amId);
+        List<History> historyList = historyService.getHistoryListByAmId(amId);
+        if(historyList != null){
+            request.setAttribute("historyList",historyList);
+            modelAndView = new ModelAndView("/chart");
+        }
+        return modelAndView;
+    }
 
 
 }
