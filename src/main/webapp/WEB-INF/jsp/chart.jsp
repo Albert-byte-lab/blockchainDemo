@@ -85,7 +85,7 @@
     // 指定图表的配置项和数据
     var option1 = {
         title: {
-            text: '第一个 ECharts 实例'
+            text: ''
         },
         tooltip: {},
         legend: {

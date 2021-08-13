@@ -202,6 +202,11 @@
 														data-toggle="tooltip" title="" class="btn btn-info"
 														data-original-title=""><i>Track</i></a>
 												</td>
+												<td class="text-right"><a
+														href="/blockchainDemo/history/showcharts?amId=${u.amId}"
+														data-toggle="tooltip" title="" class="btn btn-info"
+														data-original-title=""><i>报表</i></a>
+												</td>
 											</tr>
 										</c:forEach>
 										</tbody>
