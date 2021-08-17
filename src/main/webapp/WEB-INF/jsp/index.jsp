@@ -61,7 +61,9 @@
                         <ul class="dropdown-menu">
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="/yogaShare/localauth/tocancel" class="btn btn-default btn-flat">安全退出</a>
+                                    <a href="" class="btn btn-default btn-flat">基本信息</a>
+                                    <a href="" class="btn btn-default btn-flat">修改密码</a>
+                                    <a href="/blockchainDemo/localauth/tocancel" class="btn btn-default btn-flat">安全退出</a>
                                 </div>
                             </li>
                         </ul>

@@ -13,13 +13,11 @@ $(function(){
 			var userId = $('#usertype').find('option').not(function() {
 							return !this.selected;
 							}).data('id');
-			alert(userId);
-
 			var name = $('#usertype').find('option').not(function() {
 				return !this.selected;
 			}).data('name');
 
-			alert(name);
+
 
 			var formData = new FormData();
 			
