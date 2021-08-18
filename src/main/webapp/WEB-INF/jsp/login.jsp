@@ -36,8 +36,8 @@
 	<meta name="__hash__" content="35a35d71936253d091570f5dcdf3efda_36195b7c33bcc5ab73f67451e5438f65" /></head>
 <body class="login-page">
 <div class="login-box">
-	<div class="login-logo">
-		<a href="#"><b>天链</b></a>
+	<div class="login-logo" style="width: 350px;height: 200px">
+		<img src="../resources/Public/img/logo02.png" alt="logo" style="width: 350px;height: 200px;left: 50%;">
 	</div>
 	<div class="login-box-body">
 		<p class="login-box-msg"><b>飞行零部件全生命周期管理系统</b></p>
