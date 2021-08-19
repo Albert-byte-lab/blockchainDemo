@@ -28,6 +28,12 @@
     <script src="../resources/Public/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="../resources/Public/js/layer/layer-min.js"></script><!-- 弹窗js 参考文档 http://layer.layui.com/-->
     <script src="../resources/Public/js/myAjax.js"></script>
+      <script src="../resources/Public/js/echart/echarts.js"></script>
+      <script src="../resources/Public/js/echart/china.js"></script>
+      <script src="../resources/Public/js/echart/echarts.js.map"></script>
+      <script src="../resources/Public/js/echart/macarons.js"></script>
+      <script src="../resources/Public/js/echart/bmap.js"></script>
+      <script src="../resources/Public/js/echart/dataTool.js"></script>
     <script type="text/javascript">
     function delfunc(obj){
     	layer.confirm('确认删除？', {
@@ -127,43 +133,46 @@
 		<div class="row">
             <div class="col-md-3 col-sm-6 col-xs-12">
               <div class="info-box">
-                <span class="info-box-icon bg-aqua"><i class="fa fa-bell"></i></span>
+                <%--<span class="info-box-icon bg-aqua"><i class="fa fa-bell"></i></span>--%>
+                  <img src="../resources/Public/img/ARJ21.png" style="height: 90px;width: 90px;float: left">
                 <div class="info-box-content">
-                  <span class="info-box-text">待处理订单</span>
+                  <span class="info-box-text">总零部件数</span>
                   <span class="info-box-number">139</span>
                 </div>
               </div>
             </div>
             <div class="col-md-3 col-sm-6 col-xs-12">
               <div class="info-box">
-                <span class="info-box-icon bg-green"><i class="fa fa-flag-o"></i></span>
+                <%--<span class="info-box-icon bg-green"><i class="fa fa-flag-o"></i></span>--%>
+                    <img src="../resources/Public/img/C919.png" style="height: 90px;width: 90px;float: left">
                 <div class="info-box-content">
-                  <span class="info-box-text">商品数量</span>
+                  <span class="info-box-text">总零部件数</span>
                   <span class="info-box-number">105</span>
                 </div>
               </div>
             </div>
             <div class="col-md-3 col-sm-6 col-xs-12">
               <div class="info-box">
-                <span class="info-box-icon bg-yellow"><i class="fa fa-files-o"></i></span>
+                <%--<span class="info-box-icon bg-yellow"><i class="fa fa-files-o"></i></span>--%>
+                    <img src="../resources/Public/img/CR929.png" style="height: 90px;width: 90px;float: left">
                 <div class="info-box-content">
-                  <span class="info-box-text">文章数量</span>
+                  <span class="info-box-text">总零部件数</span>
                   <span class="info-box-number">149</span>
                 </div>
               </div>
             </div>
             <div class="col-md-3 col-sm-6 col-xs-12">
               <div class="info-box">
-                <span class="info-box-icon bg-red"><i class="fa fa-user-plus"></i></span>
+                  <span class="info-box-icon bg-aqua"><i class="fa fa-bell"></i></span>
                 <div class="info-box-content">
-                  <span class="info-box-text">会员总数</span>
+                  <span class="info-box-text">其他</span>
                   <span class="info-box-number">2568</span>
                 </div>
               </div>
             </div>
          </div>
 		
-		<div class="row">
+		<%--<div class="row">
 			<div class="col-md-12">
 		      <div class="box box-info">
 		        <div class="box-header">
@@ -172,13 +181,13 @@
 		        <div class="box-body">
 	         		<div class="row">
 			  			<div class="col-sm-3 col-xs-6">
-			  				新增订单：0			  			</div>
+			  				新增零部件：12			  			</div>
 			  				<div class="col-sm-3 col-xs-6">
-			  				今日访问：0			  			</div>
+			  				今日访问数：205			  			</div>
 			  				<div class="col-sm-3 col-xs-6">
-			  				新增会员：0			  			</div>
+			  				即将过期零部件：5			  			</div>
 			  				<div class="col-sm-3 col-xs-6">
-			  				待审评论：5			  			</div>
+			  				待查看反馈：6			  			</div>
 		  			</div>
 		        </div>
 		      </div>
@@ -228,12 +237,10 @@
                         </div>
                     </div>
 			    </div>
-          </div>
+          </div>--%>
 
 
-          <div class="callout callout-success">
-            <p> <b>ego</b> B2C 开源商城    包含(pc + wap + android + ios + 微商城)多终端 </p>
-          </div>
+
      </section>
  </div>
  </body>
