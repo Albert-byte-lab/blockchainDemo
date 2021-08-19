@@ -40,7 +40,7 @@
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b></b></span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><img src="../resources/Public/images/ego_logo.png" width="40" height="30">&nbsp;&nbsp;<b>零部件全生命</b></span>
+            <span class="logo-lg"><img src="../resources/Public/img/logo02.png" width="40" height="30">&nbsp;&nbsp;<b>飞行零部件全生命周期管理系统</b></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -90,11 +90,11 @@
             <ul class="sidebar-menu">
                 <li class="treeview">
                     <a href="javascript:void(0)">
-                        <i class="fa fa-cog"></i><span>信息管理</span><i class="fa fa-angle-left pull-right"></i>
+                        <i class="fa fa-cog"></i><span>零部件供应商信息管理</span><i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
                         <li onclick="makecss(this)" data-id="index_Admin">
-                            <a href='/blockchainDemo/am/showam' target='rightContent'><i class="fa fa-circle-o"></i>信息列表</a>
+                            <a href='/blockchainDemo/am/showam' target='rightContent'><i class="fa fa-circle-o"></i>零部件供应商信息列表</a>
                         </li></ul>
                 </li>
 
