@@ -84,16 +84,21 @@ public class LocalAuthController {
         return modelMap;
     }
 
-    @RequestMapping(value="/tocancel")
-    private ModelAndView toCancel(HttpServletRequest request) {
-        ModelAndView model = null;
-        if(request.getSession().getAttribute("localAuth") != null) {
-            if(request.getSession().getAttribute("localAuth") != null) {
-                request.getSession().removeAttribute("localAuth");
-            }
-            request.getSession().invalidate();
-            model = new ModelAndView("redirect:/admin/login");
-        }
-        return model;
+    @RequestMapping(value = "/tocancel", method = RequestMethod.POST)
+    @ResponseBody
+    /**
+     * 当用户点击登出按钮的时候注销session
+     *
+     * @param request
+     * @return
+     * @throws IOException
+     */
+    private Map<String, Object> logout(HttpServletRequest request) {
+        Map<String, Object> modelMap = new HashMap<String, Object>();
+        // 将用户session置为空
+        request.getSession().setAttribute("userInfo", null);
+        request.getSession().setAttribute("localAuth",null);
+        modelMap.put("success", true);
+        return modelMap;
     }
 }

@@ -47,7 +47,6 @@ $(function(){
 			cache : false,
 			success : function(data) {
 				if (data.success) {
-					alert('提交成功！');
 					//登录成功则跳转到主页。
 					window.location.href = "/blockchainDemo/admin/index";
 					// if (!isEdit) {
