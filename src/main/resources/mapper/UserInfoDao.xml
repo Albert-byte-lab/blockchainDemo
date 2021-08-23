@@ -14,6 +14,12 @@
 		user_id = #{userId};
 	</select>
 
+	<select id="queryAllUserInfo"  resultType="com.loongrise.entity.UserInfo">
+		SELECT
+		*
+		FROM
+		user_info
+	</select>
 
 
 </mapper>

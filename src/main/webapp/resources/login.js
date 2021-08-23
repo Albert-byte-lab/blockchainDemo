@@ -2,92 +2,60 @@
  * 
  */
 $(function(){
-	
+
+	var  listUrl = '/blockchainDemo/localauth/listuserinfo';
 	var loginUrl = '/blockchainDemo/localauth/tologin';
-	
+	getUserInfo();
+
+	function getUserInfo(){
+		$.getJSON(listUrl,function (data){
+			if(data.success){
+					var tempHtml = '';
+					data.userInfoList.map(function (item,index){
+						tempHtml += '<option data-id="' + item.userId
+						+ '">' +item.name + '</option>';
+					});
+					$('#userinfolist').html(tempHtml);
+			}
+		});
+	}
+
+
 	$('#submit').click(function(){
-
-			var localAuth = {};
-			localAuth.username = $('#username').val();
-			localAuth.password = $('#password').val();
-			var userId = $('#usertype').find('option').not(function() {
-							return !this.selected;
-							}).data('id');
-			var name = $('#usertype').find('option').not(function() {
+		var localAuth={};
+		var userInfo={};
+		//获取输入的账号名
+		localAuth.username = $('#username').val();
+		//获取输入的密码
+		localAuth.password = $('#password').val();
+		//获取选择的用户类型
+		userInfo={
+			userId:$('#userinfolist').find('option').not(function(){
 				return !this.selected;
-			}).data('name');
+			}).data('id')
+		};
+		var formData = new FormData();
+		formData.append('localAuthStr',JSON.stringify(localAuth));
+		formData.append('userInfoStr',JSON.stringify(userInfo));
 
-
-
-			var formData = new FormData();
-			
-			formData.append('localAuthStr',JSON.stringify(localAuth));
-			
-			formData.append('userId',userId);
-			
-			$.ajax({
-				url:loginUrl,
-				type : 'POST',
-				data : formData,
-				contentType : false,
-				processData : false,
-				cache : false,
-				success:function(data){
-					if(data.success){
-						alert("登录成功！欢迎您:"+ name);
-						//登录成功后，跳转到index页面;
-						if(userId == 2){
-							window.location.href = "/blockchainDemo/admin/index";
-						}else if(userId == 1){
-							window.location.href = "/blockchainDemo/admin/make_index";
-						}else if(userId == 3){
-                            window.location.href = "/blockchainDemo/admin/assembPlant_index";
-                        }else if(userId == 4){
-                        	window.location.href = "/blockchainDemo/admin/airline_index";
-                    	}else if(userId == 5){
-                       	 	window.location.href = "/blockchainDemo/admin/repair_index";
-                    	}
-
-					}else{
-						alert("   登录失败!  " + "   用户名或密码不正确!");
-					}	
-					// //无论是否成功都换一下验证码!
-					// $('#realNum').click();
+		$.ajax({
+			url : loginUrl,
+			type : 'POST',
+			data : formData,
+			contentType : false,
+			processData : false,
+			cache : false,
+			success : function(data) {
+				if (data.success) {
+					alert('提交成功！');
+					// if (!isEdit) {
+					// 	// 若为注册操作，成功后返回店铺列表页
+					// 	window.location.href = "/o2o/shopadmin/shoplist";
+					// }
+				} else {
+					alert('提交失败！');
 				}
-			})
-			
-			
-
+			}
+		});
 	})
-	
-	
-	// function checkModel(){
-	// 	var username = $('input[name="username"]').val();
-	// 	var password = $('input[name="password"]').val();
-	// 	var checkNum = $('#checkNum').val();
-	// 	var reg = new RegExp(/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/);
-	// 	if(username == ''){
-	// 		alert('用户名不可为空!');
-	// 		return false;
-	// 	}
-	// 	if(!reg.test(username)){
-	// 		alert('用户名必须为数字和字母组成且长度不少于8!');
-	// 		return false;
-	// 	}
-	//
-	// 	if(password == ''){
-	// 		alert('密码不可为空!');
-	// 		return false;
-	// 	}
-	// 	if(!reg.test(password)){
-	// 		alert('密码必须为数字和字母组成且长度不少于8!');
-	// 		return false;
-	// 	}
-	// 	if(checkNum == ''){
-	// 		alert('验证码不能为空!');
-	// 		return false;
-	// 	}
-	// 	return true;
-	// }
-
 })

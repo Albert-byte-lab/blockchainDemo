@@ -23,6 +23,8 @@ public class AviationMaterial {
     //零部件已使用次数
     private long amUsedTime;
 
+    //零部件所属飞机
+    private Aircraft aircraft;
 
     public long getAmId() {
         return amId;
@@ -38,6 +40,14 @@ public class AviationMaterial {
 
     public void setAmName(String amName) {
         this.amName = amName;
+    }
+
+    public Aircraft getAircraft() {
+        return aircraft;
+    }
+
+    public void setAircraft(Aircraft aircraft) {
+        this.aircraft = aircraft;
     }
 
     public String getAmDesc() {

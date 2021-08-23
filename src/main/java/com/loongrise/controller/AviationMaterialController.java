@@ -5,10 +5,7 @@ import com.loongrise.entity.AviationMaterial;
 import com.loongrise.entity.History;
 import com.loongrise.entity.RFID;
 import com.loongrise.entity.UserInfo;
-import com.loongrise.service.AviationMaterialCateService;
-import com.loongrise.service.AviationMaterialService;
-import com.loongrise.service.HistoryService;
-import com.loongrise.service.RFIDService;
+import com.loongrise.service.*;
 import com.loongrise.util.HttpServletRequestUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,6 +32,9 @@ public class AviationMaterialController {
 
     @Autowired
     private HistoryService historyService;
+
+    @Autowired
+    private AircraftService aircraftService;
 
     @RequestMapping(value="/showam",method= RequestMethod.GET)
     private ModelAndView showAm(HttpServletRequest request){

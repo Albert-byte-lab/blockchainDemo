@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loongrise.dao.AircraftDao">
+
+
+
+    <select id="queryAllAircraft" resultType="com.loongrise.entity.Aircraft">
+		SELECT
+		ac_id,
+		ac_name,
+		ac_to_airline
+		FROM
+		aircraft
+	</select>
+
+    <select id="queryAircraftById" parameterType="Long" resultType="com.loongrise.entity.Aircraft">
+		SELECT
+		ac_id,
+		ac_name,
+		ac_to_airline
+		FROM
+		aircraft
+		WHERE
+		ac_id = #{acId}
+	</select>
+
+
+
+    <insert id="insertOneAircraft" useGeneratedKeys="true" keyColumn="ac_id" keyProperty="acId" parameterType="com.loongrise.entity.Aircraft">
+		INSERT INTO
+		aircraft(ac_name,ac_to_airline)
+		VALUES(#{acName},#{acToAirline});
+	</insert>
+
+    <update id="updateAircraft" parameterType="com.loongrise.entity.Aircraft">
+        UPDATE aircraft
+        <set>
+            <if test="acName != null">ac_name = #{acName},</if>
+            <if test="acToAirline != null">ac_to_airline = #{acToAirline}</if>
+        </set>
+        WHERE
+        ac_id = #{acId}
+    </update>
+
+    <delete id="deleteAircraft" parameterType="Long">
+		DELETE FROM
+		aircraft
+		WHERE
+		ac_id = #{acId};
+	</delete>
+</mapper>

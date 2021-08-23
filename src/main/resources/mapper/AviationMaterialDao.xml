@@ -13,6 +13,11 @@
         <result column="am_serial_num" property="amSerialNum"/>
         <result column="am_used_time" property="amUsedTime"/>
         <result column="am_category" property="amCategory"/>
+		<association property="aircraft" column="ac_id" javaType="com.loongrise.entity.Aircraft">
+			<id column="ac_id" property="acId"/>
+			<result column="ac_name" property="acName"/>
+			<result column="ac_to_airline" property="acToAirline"/>
+		</association>
     </resultMap>
 
     <select id="queryAmById" parameterType="Long" resultMap="amMap">
@@ -24,9 +29,16 @@
 		a.am_qualified_num,
 		a.am_serial_num,
 		a.am_used_time,
-		a.am_category
+		a.am_category,
+		ac.ac_id,
+		ac.ac_name,
+		ac.ac_to_airline
 		FROM
 		am a
+		LEFT JOIN
+		aircraft ac
+		ON
+		a.ac_id = ac.ac_id
 		WHERE
 		am_id = #{amId};
 	</select>
@@ -40,12 +52,19 @@
 		a.am_qualified_num,
 		a.am_serial_num,
 		a.am_used_time,
-		a.am_category
+		a.am_category,
+		ac.ac_id,
+		ac.ac_name,
+		ac.ac_to_airline
 		FROM
 		am a
+		LEFT JOIN
+		aircraft ac
+		ON
+		a.ac_id = ac.ac_id
 	</select>
 
-	<select id="queryNewId" resultType="long">
+	<select id="queryNewId" resultType="Long">
 		SELECT
 		MAX(am_id)
 		FROM
@@ -57,8 +76,8 @@
 
     <insert id="insertAm" useGeneratedKeys="true" keyColumn="am_id" keyProperty="amId" parameterType="com.loongrise.entity.AviationMaterial">
 		INSERT INTO
-		am(am_name,am_desc,am_expire_time,am_qualified_num,am_serial_num,am_used_time,am_category)
-		VALUES(#{amName},#{amDesc},#{amExpireTime},#{amQualifiedNum},#{amSerialNum},#{amUsedTime},#{amCategory});
+		am(am_name,am_desc,am_expire_time,am_qualified_num,am_serial_num,am_used_time,am_category,ac_id)
+		VALUES(#{amName},#{amDesc},#{amExpireTime},#{amQualifiedNum},#{amSerialNum},#{amUsedTime},#{amCategory},#{aircraft.acId});
 	</insert>
 
     <update id="updateAm" parameterType="com.loongrise.entity.AviationMaterial">
