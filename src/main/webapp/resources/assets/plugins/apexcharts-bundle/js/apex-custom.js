@@ -481,14 +481,14 @@ $(function () {
 	// chart 7
 	var options = {
 		series: [{
-			name: 'Net Profit',
-			data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
+			name: '三个月后过期',
+			data: [44, 55, 57, 56, 61, 58, 63, 60, 66,46,57,48]
 		}, {
-			name: 'Revenue',
-			data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
+			name: '一年及一年以上过期',
+			data: [76, 85, 101, 98, 87, 105, 91, 114, 94,78,85,93]
 		}, {
-			name: 'Free Cash Flow',
-			data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
+			name: '一个月后过期',
+			data: [35, 41, 36, 26, 45, 48, 52, 53, 41,36,37,36]
 		}],
 		chart: {
 			foreColor: '#9ba7b2',
@@ -511,19 +511,19 @@ $(function () {
 			colors: ['transparent']
 		},
 		title: {
-			text: 'Column Chart',
+			text: '每月零件过期统计图',
 			align: 'left',
 			style: {
 				fontSize: '14px'
 			}
 		},
-		colors: ["#673ab7", '#f02769', '#32ab13'],
+		colors: ["#F9F70B", '#32ab13', '#f02769'],
 		xaxis: {
-			categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+			categories: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月','十月','十一月','十二月'],
 		},
 		yaxis: {
 			title: {
-				text: '$ (thousands)'
+				text: '单位：件'
 			}
 		},
 		fill: {
@@ -532,7 +532,7 @@ $(function () {
 		tooltip: {
 			y: {
 				formatter: function (val) {
-					return "$ " + val + " thousands"
+					return  + val + "件设备"
 				}
 			}
 		}
