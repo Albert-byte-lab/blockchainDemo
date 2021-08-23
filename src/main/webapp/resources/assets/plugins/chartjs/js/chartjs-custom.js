@@ -1,79 +1,41 @@
 $(function () {
 	"use strict";
 	// chart 1
-	var ctx = document.getElementById('chart1').getContext('2d');
-	var myChart = new Chart(ctx, {
-		type: 'line',
-		data: {
-			labels: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
-			datasets: [{
-				label: 'Google',
-				data: [13, 20, 4, 18, 7, 4, 8],
-				backgroundColor: "transparent",
-				borderColor: "#673ab7",
-				pointRadius: "0",
-				borderWidth: 4
-			}, {
-				label: 'Facebook',
-				data: [3, 30, 6, 6, 3, 4, 11],
-				backgroundColor: "transparent",
-				borderColor: "#32ab13",
-				pointRadius: "0",
-				borderWidth: 4
-			}]
-		},
-		options: {
-			maintainAspectRatio: false,
-			legend: {
-				display: true,
-				labels: {
-					fontColor: '#585757',
-					boxWidth: 40
-				}
-			},
-			tooltips: {
-				enabled: false
-			},
-			scales: {
-				xAxes: [{
-					ticks: {
-						beginAtZero: true,
-						fontColor: '#585757'
-					},
-					gridLines: {
-						display: true,
-						color: "rgba(0, 0, 0, 0.07)"
-					},
-				}],
-				yAxes: [{
-					ticks: {
-						beginAtZero: true,
-						fontColor: '#585757'
-					},
-					gridLines: {
-						display: true,
-						color: "rgba(0, 0, 0, 0.07)"
-					},
-				}]
-			}
-		}
-	});
-	// chart 2
-	var ctx = document.getElementById("chart2").getContext('2d');
+	var ctx = document.getElementById("chart1");
 	var myChart = new Chart(ctx, {
 		type: 'bar',
 		data: {
-			labels: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
+			labels: ['8月15日', '8月16日', '8月17日', '8月18日', '8月19日', '8月20日'],
 			datasets: [{
-				label: 'Google',
-				data: [13, 20, 4, 18, 29, 25, 8],
+				label: '发生器',
+				data: [13,31,20,3,6,20],
 				barPercentage: .5,
 				backgroundColor: "#673ab7"
 			}, {
-				label: 'Facebook',
-				data: [31, 30, 6, 6, 21, 4, 11],
+				label: '救生衣',
+				data: [30,20,10,5,6,10],
 				barPercentage: .5,
 				backgroundColor: "#bf9bff"
+			},{
+				label: '传感器',
+				data: [10,11,12,16,19,10],
+				barPercentage: .5,
+				backgroundColor: "#673ab7"
+			},{
+				label: '飞机导线',
+				data: [4,6,7,13,15,21],
+				barPercentage: .5,
+				backgroundColor: "#32ab13"
+			},{
+				label: '电插头',
+				data: [21,10,23,6,9,10],
+				barPercentage: .5,
+				backgroundColor: "#f02769"
+			},{
+				label: '转化器',
+				data: [6,8,19,21,19,29],
+				barPercentage: .5,
+				backgroundColor: "#ffc107"
 			}]
 		},
 		options: {
@@ -116,7 +78,7 @@ $(function () {
 	new Chart(document.getElementById("chart3"), {
 		type: 'pie',
 		data: {
-			labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+			labels: ["飞机导线", "救生衣", "电插头", "支柱充气工具", "数据显示压力表"],
 			datasets: [{
 				label: "Population (millions)",
 				backgroundColor: ["#673ab7", "#32ab13", "#f02769", "#ffc107", "#198fed"],
@@ -127,42 +89,42 @@ $(function () {
 			maintainAspectRatio: false,
 			title: {
 				display: true,
-				text: 'Predicted world population (millions) in 2050'
+				text: '各零部件使用占比分析图'
 			}
 		}
 	});
 	// chart 4
-	new Chart(document.getElementById("chart4"), {
-		type: 'radar',
-		data: {
-			labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-			datasets: [{
-				label: "1950",
-				fill: true,
-				backgroundColor: "rgba(179,181,198,0.2)",
-				borderColor: "rgba(179,181,198,1)",
-				pointBorderColor: "#fff",
-				pointBackgroundColor: "rgba(179,181,198,1)",
-				data: [8.77, 55.61, 21.69, 6.62, 6.82]
-			}, {
-				label: "2050",
-				fill: true,
-				backgroundColor: "rgba(255,99,132,0.2)",
-				borderColor: "rgba(255,99,132,1)",
-				pointBorderColor: "#fff",
-				pointBackgroundColor: "rgba(255,99,132,1)",
-				pointBorderColor: "#fff",
-				data: [25.48, 54.16, 7.61, 8.06, 4.45]
-			}]
-		},
-		options: {
-			maintainAspectRatio: false,
-			title: {
-				display: true,
-				text: 'Distribution in % of world population'
-			}
-		}
-	});
+	// new Chart(document.getElementById("chart4"), {
+	// 	type: 'radar',
+	// 	data: {
+	// 		labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+	// 		datasets: [{
+	// 			label: "1950",
+	// 			fill: true,
+	// 			backgroundColor: "rgba(179,181,198,0.2)",
+	// 			borderColor: "rgba(179,181,198,1)",
+	// 			pointBorderColor: "#fff",
+	// 			pointBackgroundColor: "rgba(179,181,198,1)",
+	// 			data: [8.77, 55.61, 21.69, 6.62, 6.82]
+	// 		}, {
+	// 			label: "2050",
+	// 			fill: true,
+	// 			backgroundColor: "rgba(255,99,132,0.2)",
+	// 			borderColor: "rgba(255,99,132,1)",
+	// 			pointBorderColor: "#fff",
+	// 			pointBackgroundColor: "rgba(255,99,132,1)",
+	// 			pointBorderColor: "#fff",
+	// 			data: [25.48, 54.16, 7.61, 8.06, 4.45]
+	// 		}]
+	// 	},
+	// 	options: {
+	// 		maintainAspectRatio: false,
+	// 		title: {
+	// 			display: true,
+	// 			text: 'Distribution in % of world population'
+	// 		}
+	// 	}
+	// });
 	// chart 5
 	new Chart(document.getElementById("chart5"), {
 		type: 'polarArea',
