@@ -134,7 +134,6 @@
 <script src="../resources/Public/plugins/fastclick/fastclick.min.js" type="text/javascript"></script>
 <script src="../resources/Public/dist/js/app.js" type="text/javascript"></script>
 <script src="../resources/Public/dist/js/demo.js" type="text/javascript"></script>
-
 <script type="text/javascript">
     $(document).ready(function(){
         $("#riframe").height($(window).height()-100);//浏览器当前窗口可视区域高度

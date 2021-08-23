@@ -40,8 +40,8 @@
 		<img src="../resources/Public/img/logo02.png" alt="logo" style="width: 350px;height: 200px;left: 50%;">
 	</div>
 	<div class="login-box-body">
-		<p class="login-box-msg"><b>飞行零部件全生命周期管理系统</b></p>
-		<div class="form-group has-feedback">
+		<p class="login-box-msg"><b>机载计算机信息系统RFID管理中枢</b></p>
+		<%--<div class="form-group has-feedback">
 			<select id="usertype" class="form-control">
 				<option data-id="1" data-name="飞机制造商工程部门">飞机制造商工程部门</option>
 				<option data-id="2" data-name="零部件供应商">零部件供应商</option>
@@ -49,7 +49,7 @@
 				<option data-id="4" data-name="航司">航司</option>
 				<option data-id="5" data-name="飞机修理厂">飞机修理厂</option>
 			</select>
-		</div>
+		</div>--%>
 		<div class="form-group has-feedback">
 			<input type="text" name="username" id="username" class="form-control" placeholder="账号" />
 			<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
