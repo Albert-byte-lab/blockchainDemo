@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class TestController {
     @GetMapping("/trace")
     public String trace(){
-        return "trace";
+        return "amTrace";
     }
 }
