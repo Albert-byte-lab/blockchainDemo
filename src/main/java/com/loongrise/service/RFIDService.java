@@ -9,4 +9,10 @@ public interface RFIDService {
     int addRFID(RFID rfid);
     //查询所有的rfid信息
     List<RFID> queryRFID();
+
+    //根据epc值获取对应的标签信息
+    RFID getRFIDByEpc(String epc);
+
+    //批量获取epc值对应的标签信息
+    List<RFID> getRFIDListByEpcs(List<String> epcList);
 }

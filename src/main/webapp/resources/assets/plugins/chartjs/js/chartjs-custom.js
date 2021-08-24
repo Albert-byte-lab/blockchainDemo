@@ -125,193 +125,197 @@ $(function () {
 	// 		}
 	// 	}
 	// });
-	// chart 5
-	new Chart(document.getElementById("chart5"), {
-		type: 'polarArea',
-		data: {
-			labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-			datasets: [{
-				label: "Population (millions)",
-				backgroundColor: ["#673ab7", "#32ab13", "#f02769", "#ffc107", "#198fed"],
-				data: [2478, 5267, 734, 784, 433]
-			}]
-		},
-		options: {
-			maintainAspectRatio: false,
-			title: {
-				display: true,
-				text: 'Predicted world population (millions) in 2050'
-			}
-		}
-	});
-	// chart 6
-	new Chart(document.getElementById("chart6"), {
-		type: 'doughnut',
-		data: {
-			labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-			datasets: [{
-				label: "Population (millions)",
-				backgroundColor: ["#673ab7", "#32ab13", "#f02769", "#ffc107", "#198fed"],
-				data: [2478, 5267, 734, 784, 433]
-			}]
-		},
-		options: {
-			maintainAspectRatio: false,
-			title: {
-				display: true,
-				text: 'Predicted world population (millions) in 2050'
-			}
-		}
-	});
-	// chart 7
-	new Chart(document.getElementById("chart7"), {
-		type: 'horizontalBar',
-		data: {
-			labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-			datasets: [{
-				label: "Population (millions)",
-				backgroundColor: ["#673ab7", "#32ab13", "#f02769", "#ffc107", "#198fed"],
-				data: [2478, 5267, 734, 784, 433]
-			}]
-		},
-		options: {
-			maintainAspectRatio: false,
-			legend: {
-				display: false
-			},
-			title: {
-				display: true,
-				text: 'Predicted world population (millions) in 2050'
-			}
-		}
-	});
+	// // chart 5
+	// new Chart(document.getElementById("chart5"), {
+	// 	type: 'polarArea',
+	// 	data: {
+	// 		labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+	// 		datasets: [{
+	// 			label: "Population (millions)",
+	// 			backgroundColor: ["#673ab7", "#32ab13", "#f02769", "#ffc107", "#198fed"],
+	// 			data: [2478, 5267, 734, 784, 433]
+	// 		}]
+	// 	},
+	// 	options: {
+	// 		maintainAspectRatio: false,
+	// 		title: {
+	// 			display: true,
+	// 			text: 'Predicted world population (millions) in 2050'
+	// 		}
+	// 	}
+	// });
+	// // chart 6
+	// new Chart(document.getElementById("chart6"), {
+	// 	type: 'doughnut',
+	// 	data: {
+	// 		labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+	// 		datasets: [{
+	// 			label: "Population (millions)",
+	// 			backgroundColor: ["#673ab7", "#32ab13", "#f02769", "#ffc107", "#198fed"],
+	// 			data: [2478, 5267, 734, 784, 433]
+	// 		}]
+	// 	},
+	// 	options: {
+	// 		maintainAspectRatio: false,
+	// 		title: {
+	// 			display: true,
+	// 			text: 'Predicted world population (millions) in 2050'
+	// 		}
+	// 	}
+	// });
+	// // chart 7
+	// new Chart(document.getElementById("chart7"), {
+	// 	type: 'horizontalBar',
+	// 	data: {
+	// 		labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+	// 		datasets: [{
+	// 			label: "Population (millions)",
+	// 			backgroundColor: ["#673ab7", "#32ab13", "#f02769", "#ffc107", "#198fed"],
+	// 			data: [2478, 5267, 734, 784, 433]
+	// 		}]
+	// 	},
+	// 	options: {
+	// 		maintainAspectRatio: false,
+	// 		legend: {
+	// 			display: false
+	// 		},
+	// 		title: {
+	// 			display: true,
+	// 			text: 'Predicted world population (millions) in 2050'
+	// 		}
+	// 	}
+	// });
 	// chart 8
 	new Chart(document.getElementById("chart8"), {
 		type: 'bar',
 		data: {
-			labels: ["1900", "1950", "1999", "2050"],
+			labels: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月','十月','十一月','十二月'],
 			datasets: [{
-				label: "Africa",
-				backgroundColor: "#673ab7",
-				data: [133, 221, 783, 2478]
+				label: "三个月后过期",
+				backgroundColor: "#F9F70B",
+				data: [133, 221, 783, 500,700,300,288,588,358,678,900,1520]
 			}, {
-				label: "Europe",
+				label: "一年及一年以上过期",
+				backgroundColor: "#32ab13",
+				data: [408, 547, 675, 734,238,677,489,392,183,384,789,1000]
+			},{
+				label: "一个月后过期",
 				backgroundColor: "#f02769",
-				data: [408, 547, 675, 734]
+				data: [300,278,564,209,833,688,722,309,490,734,852,900]
 			}]
 		},
 		options: {
 			maintainAspectRatio: false,
 			title: {
 				display: true,
-				text: 'Population growth (millions)'
+				text: '单位: 件(数)'
 			}
 		}
 	});
-	// chart 9
-	new Chart(document.getElementById("chart9"), {
-		type: 'bar',
-		data: {
-			labels: ["1900", "1950", "1999", "2050"],
-			datasets: [{
-				label: "Europe",
-				type: "line",
-				borderColor: "#673ab7",
-				data: [408, 547, 675, 734],
-				fill: false
-			}, {
-				label: "Africa",
-				type: "line",
-				borderColor: "#f02769",
-				data: [133, 221, 783, 2478],
-				fill: false
-			}, {
-				label: "Europe",
-				type: "bar",
-				backgroundColor: "rgba(0,0,0,0.2)",
-				data: [408, 547, 675, 734],
-			}, {
-				label: "Africa",
-				type: "bar",
-				backgroundColor: "rgba(0,0,0,0.2)",
-				backgroundColorHover: "#3e95cd",
-				data: [133, 221, 783, 2478]
-			}]
-		},
-		options: {
-			maintainAspectRatio: false,
-			title: {
-				display: true,
-				text: 'Population growth (millions): Europe & Africa'
-			},
-			legend: {
-				display: false
-			}
-		}
-	});
-	// chart 10
-	new Chart(document.getElementById("chart10"), {
-		type: 'bubble',
-		data: {
-			labels: "Africa",
-			datasets: [{
-				label: ["China"],
-				backgroundColor: "#673ab7",
-				borderColor: "#673ab7",
-				data: [{
-					x: 21269017,
-					y: 5.245,
-					r: 15
-				}]
-			}, {
-				label: ["Denmark"],
-				backgroundColor: "#198fed",
-				borderColor: "#198fed",
-				data: [{
-					x: 258702,
-					y: 7.526,
-					r: 10
-				}]
-			}, {
-				label: ["Germany"],
-				backgroundColor: "#ffc107",
-				borderColor: "#ffc107",
-				data: [{
-					x: 3979083,
-					y: 6.994,
-					r: 15
-				}]
-			}, {
-				label: ["Japan"],
-				backgroundColor: "#f02769",
-				borderColor: "#f02769",
-				data: [{
-					x: 4931877,
-					y: 5.921,
-					r: 15
-				}]
-			}]
-		},
-		options: {
-			maintainAspectRatio: false,
-			title: {
-				display: true,
-				text: 'Predicted world population (millions) in 2050'
-			},
-			scales: {
-				yAxes: [{
-					scaleLabel: {
-						display: true,
-						labelString: "Happiness"
-					}
-				}],
-				xAxes: [{
-					scaleLabel: {
-						display: true,
-						labelString: "GDP (PPP)"
-					}
-				}]
-			}
-		}
-	});
+	// // chart 9
+	// new Chart(document.getElementById("chart9"), {
+	// 	type: 'bar',
+	// 	data: {
+	// 		labels: ["1900", "1950", "1999", "2050"],
+	// 		datasets: [{
+	// 			label: "Europe",
+	// 			type: "line",
+	// 			borderColor: "#673ab7",
+	// 			data: [408, 547, 675, 734],
+	// 			fill: false
+	// 		}, {
+	// 			label: "Africa",
+	// 			type: "line",
+	// 			borderColor: "#f02769",
+	// 			data: [133, 221, 783, 2478],
+	// 			fill: false
+	// 		}, {
+	// 			label: "Europe",
+	// 			type: "bar",
+	// 			backgroundColor: "rgba(0,0,0,0.2)",
+	// 			data: [408, 547, 675, 734],
+	// 		}, {
+	// 			label: "Africa",
+	// 			type: "bar",
+	// 			backgroundColor: "rgba(0,0,0,0.2)",
+	// 			backgroundColorHover: "#3e95cd",
+	// 			data: [133, 221, 783, 2478]
+	// 		}]
+	// 	},
+	// 	options: {
+	// 		maintainAspectRatio: false,
+	// 		title: {
+	// 			display: true,
+	// 			text: 'Population growth (millions): Europe & Africa'
+	// 		},
+	// 		legend: {
+	// 			display: false
+	// 		}
+	// 	}
+	// });
+	// // chart 10
+	// new Chart(document.getElementById("chart10"), {
+	// 	type: 'bubble',
+	// 	data: {
+	// 		labels: "Africa",
+	// 		datasets: [{
+	// 			label: ["China"],
+	// 			backgroundColor: "#673ab7",
+	// 			borderColor: "#673ab7",
+	// 			data: [{
+	// 				x: 21269017,
+	// 				y: 5.245,
+	// 				r: 15
+	// 			}]
+	// 		}, {
+	// 			label: ["Denmark"],
+	// 			backgroundColor: "#198fed",
+	// 			borderColor: "#198fed",
+	// 			data: [{
+	// 				x: 258702,
+	// 				y: 7.526,
+	// 				r: 10
+	// 			}]
+	// 		}, {
+	// 			label: ["Germany"],
+	// 			backgroundColor: "#ffc107",
+	// 			borderColor: "#ffc107",
+	// 			data: [{
+	// 				x: 3979083,
+	// 				y: 6.994,
+	// 				r: 15
+	// 			}]
+	// 		}, {
+	// 			label: ["Japan"],
+	// 			backgroundColor: "#f02769",
+	// 			borderColor: "#f02769",
+	// 			data: [{
+	// 				x: 4931877,
+	// 				y: 5.921,
+	// 				r: 15
+	// 			}]
+	// 		}]
+	// 	},
+	// 	options: {
+	// 		maintainAspectRatio: false,
+	// 		title: {
+	// 			display: true,
+	// 			text: 'Predicted world population (millions) in 2050'
+	// 		},
+	// 		scales: {
+	// 			yAxes: [{
+	// 				scaleLabel: {
+	// 					display: true,
+	// 					labelString: "Happiness"
+	// 				}
+	// 			}],
+	// 			xAxes: [{
+	// 				scaleLabel: {
+	// 					display: true,
+	// 					labelString: "GDP (PPP)"
+	// 				}
+	// 			}]
+	// 		}
+	// 	}
+	// });
 });

@@ -25,6 +25,15 @@
 		rfid
 	</select>
 
+	<select id="queryRFIDByEpc" parameterType="String"  resultType="com.loongrise.entity.RFID">
+		SELECT
+        *
+		FROM
+		rfid
+		WHERE
+		epc=#{epc}
+	</select>
+
     <insert id="insertRFID" useGeneratedKeys="true" keyColumn="rfid_id" keyProperty="rfidId" parameterType="com.loongrise.entity.RFID">
 		INSERT INTO
 		rfid(epc,tid,am_id)

@@ -7,15 +7,16 @@
 
     <select id="queryLocalAuth"  resultType="com.loongrise.entity.LocalAuth">
 		SELECT
-        username,
-        password
-		FROM
-		local_auth
-		WHERE
-		username = #{username}
-		AND
-		password = #{password}
+      	*
+      	FROM
+      	local_auth
+      	WHERE
+      	username=#{username}
+      	AND
+      	password=#{password}
 	</select>
+
+
 
 
 

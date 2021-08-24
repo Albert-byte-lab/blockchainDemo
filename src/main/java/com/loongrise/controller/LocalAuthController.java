@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.jws.soap.SOAPBinding;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.HashMap;
@@ -101,4 +102,44 @@ public class LocalAuthController {
         modelMap.put("success", true);
         return modelMap;
     }
+
+    /**
+     * 用于安卓端登录
+     * @param request
+     * @return
+     */
+    @RequestMapping(value="/toandroidlogin",method= RequestMethod.POST)
+    @ResponseBody
+    private Map<String,Object> toAndroidLogin(HttpServletRequest request){
+        Map<String,Object> modelMap = new HashMap<>();
+        ObjectMapper mapper = new ObjectMapper();
+        String localAuthStr = HttpServletRequestUtil.getString(request,"localAuthStr");
+        LocalAuth localAuth = null;
+        UserInfo userInfo = null;
+           try{
+               localAuth = mapper.readValue(localAuthStr,LocalAuth.class);
+               System.out.println("用户名:"+localAuth.getUsername());
+               System.out.println("密码:"+localAuth.getPassword());
+           }catch (IOException e){
+               modelMap.put("success",false);
+           }
+        LocalAuth result = localAuthService.getLocalAuthBypwd(localAuth);
+        if(result != null){
+            System.out.println("用户类型userId:"+result.getUserId());
+            userInfo = userInfoService.getUserInfoById(result.getUserId());
+            System.out.println("用户名:"+userInfo.getName());
+            System.out.println("address:"+userInfo.getAddress());
+            System.out.println("desc "+ userInfo.getDesc());
+            if(userInfo != null){
+                request.getSession().setAttribute("userInfo",userInfo);
+                modelMap.put("success",true);
+            }
+        }
+        return  modelMap;
+    }
+
+
+
+
+
 }
