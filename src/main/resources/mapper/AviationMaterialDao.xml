@@ -201,25 +201,25 @@
 	<insert id="insertOneAm" useGeneratedKeys="true" keyColumn="am_id" keyProperty="amId" parameterType="com.loongrise.entity.AviationMaterial">
 		INSERT INTO am
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="am_name != null">
+			<if test="amName != null">
 				am_name,
 			</if>
-			<if test="am_desc != null">
+			<if test="amDesc != null">
 				am_desc,
 			</if>
-			<if test="am_expire_time != null">
+			<if test="amExpireTime != null">
 				am_expire_time,
 			</if>
-			<if test="am_qualified_num != null">
+			<if test="amQualifiedNum != null">
 				am_qualified_num,
 			</if>
-			<if test="am_used_time != null">
+			<if test="amUsedTime != null">
 				am_used_time,
 			</if>
-			<if test="ac_id != null">
+			<if test="aircraft.acId != null">
 				ac_id,
 			</if>
-			<if test="am_serial_num != null">
+			<if test="amSerialNum != null">
 				am_serial_num,
 			</if>
 		</trim>
@@ -247,7 +247,6 @@
 			</if>
 		</trim>
 	</insert>
-
 
     <update id="updateAm" parameterType="com.loongrise.entity.AviationMaterial">
         UPDATE am
