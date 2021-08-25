@@ -16,4 +16,19 @@ public interface AviationMaterialService {
 
     //根据id获取零部件信息
     AviationMaterial getAmById(long amId);
+
+    //one
+    List<AviationMaterial> getOneAmList();
+    //two
+    List<AviationMaterial> getTwoAmList();
+    //three
+    List<AviationMaterial> getThreeAmList();
+    //four
+    List<AviationMaterial> getFourAmList();
+    //five
+    List<AviationMaterial> getFiveAmList();
+
+    //零部件信息录入
+    int addOneAm(AviationMaterial aviationMaterial);
+
 }

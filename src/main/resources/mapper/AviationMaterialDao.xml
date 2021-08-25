@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.loongrise.dao.AviationMaterialDao">
 
     <resultMap type="com.loongrise.entity.AviationMaterial" id="amMap">
@@ -61,23 +61,191 @@
 		LEFT JOIN
 		aircraft ac
 		ON
-		a.ac_id = ac.ac_id
+		a.ac_id = ac.ac_id;
 	</select>
 
 	<select id="queryNewId" resultType="Long">
 		SELECT
 		MAX(am_id)
 		FROM
-		am
+		am;
 	</select>
 
 
+	<select id="oneQueryAmList" resultMap="amMap">
+		SELECT
+		a.am_id,
+		a.am_name,
+		a.am_desc,
+		a.am_expire_time,
+		a.am_qualified_num,
+		a.am_serial_num,
+		a.am_used_time,
+		a.am_category,
+		ac.ac_id,
+		ac.ac_name,
+		ac.ac_to_airline
+		FROM
+		am a
+		LEFT JOIN
+		aircraft ac
+		ON
+		a.ac_id = ac.ac_id
+		WHERE
+		a.am_category= 0;
+	</select>
+
+
+	<select id="twoQueryAmList" resultMap="amMap">
+		SELECT
+		a.am_id,
+		a.am_name,
+		a.am_desc,
+		a.am_expire_time,
+		a.am_qualified_num,
+		a.am_serial_num,
+		a.am_used_time,
+		a.am_category,
+		ac.ac_id,
+		ac.ac_name,
+		ac.ac_to_airline
+		FROM
+		am a
+		LEFT JOIN
+		aircraft ac
+		ON
+		a.ac_id = ac.ac_id
+		WHERE
+		a.am_category = 1;
+	</select>
+
+
+	<select id="threeQueryAmList" resultMap="amMap">
+		SELECT
+		a.am_id,
+		a.am_name,
+		a.am_desc,
+		a.am_expire_time,
+		a.am_qualified_num,
+		a.am_serial_num,
+		a.am_used_time,
+		a.am_category,
+		ac.ac_id,
+		ac.ac_name,
+		ac.ac_to_airline
+		FROM
+		am a
+		LEFT JOIN
+		aircraft ac
+		ON
+		a.ac_id = ac.ac_id
+		WHERE
+		a.am_category = 2;
+	</select>
+
+
+	<select id="fourQueryAmList" resultMap="amMap">
+		SELECT
+		a.am_id,
+		a.am_name,
+		a.am_desc,
+		a.am_expire_time,
+		a.am_qualified_num,
+		a.am_serial_num,
+		a.am_used_time,
+		a.am_category,
+		ac.ac_id,
+		ac.ac_name,
+		ac.ac_to_airline
+		FROM
+		am a
+		LEFT JOIN
+		aircraft ac
+		ON
+		a.ac_id = ac.ac_id
+		WHERE
+		a.am_category = 3;
+	</select>
+
+
+	<select id="fiveQueryAmList" resultMap="amMap">
+		SELECT
+		a.am_id,
+		a.am_name,
+		a.am_desc,
+		a.am_expire_time,
+		a.am_qualified_num,
+		a.am_serial_num,
+		a.am_used_time,
+		a.am_category,
+		ac.ac_id,
+		ac.ac_name,
+		ac.ac_to_airline
+		FROM
+		am a
+		LEFT JOIN
+		aircraft ac
+		ON
+		a.ac_id = ac.ac_id
+		WHERE
+		a.am_category = 4;
+	</select>
 
 
     <insert id="insertAm" useGeneratedKeys="true" keyColumn="am_id" keyProperty="amId" parameterType="com.loongrise.entity.AviationMaterial">
 		INSERT INTO
 		am(am_name,am_desc,am_expire_time,am_qualified_num,am_serial_num,am_used_time,am_category,ac_id)
 		VALUES(#{amName},#{amDesc},#{amExpireTime},#{amQualifiedNum},#{amSerialNum},#{amUsedTime},#{amCategory},#{aircraft.acId});
+	</insert>
+
+	<insert id="insertOneAm" useGeneratedKeys="true" keyColumn="am_id" keyProperty="amId" parameterType="com.loongrise.entity.AviationMaterial">
+		INSERT INTO am
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="am_name != null">
+				am_name,
+			</if>
+			<if test="am_desc != null">
+				am_desc,
+			</if>
+			<if test="am_expire_time != null">
+				am_expire_time,
+			</if>
+			<if test="am_qualified_num != null">
+				am_qualified_num,
+			</if>
+			<if test="am_used_time != null">
+				am_used_time,
+			</if>
+			<if test="ac_id != null">
+				ac_id,
+			</if>
+			<if test="am_serial_num != null">
+				am_serial_num,
+			</if>
+		</trim>
+		<trim prefix="values(" suffix=")" suffixOverrides="," >
+			<if test="am_name != null">
+				#{amName},
+			</if>
+			<if test="am_desc != null">
+				#{amDesc},
+			</if>
+			<if test="am_expire_time != null">
+				#{amExpireTime},
+			</if>
+			<if test="am_qualified_num != null">
+				#{amQualifiedNum},
+			</if>
+			<if test="am_used_time != null">
+				#{amUsedTime},
+			</if>
+			<if test="ac_id != null">
+				#{aircraft.acId},
+			</if>
+			<if test="am_serial_num != null">
+				#{amSerialNum},
+			</if>
+		</trim>
 	</insert>
 
     <update id="updateAm" parameterType="com.loongrise.entity.AviationMaterial">
@@ -87,7 +255,7 @@
             <if test="amDesc != null">am_desc = #{amDesc}</if>
         </set>
         WHERE
-        am_id = #{amId}
+        am_id = #{amId};
     </update>
 
     <delete id="deleteAmById" parameterType="Long">
@@ -96,4 +264,7 @@
 		WHERE
 		am_id = #{amId};
 	</delete>
+
+
+
 </mapper>

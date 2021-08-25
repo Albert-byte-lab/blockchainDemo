@@ -31,4 +31,34 @@ public class AviationMaterialServiceImpl implements AviationMaterialService {
     public AviationMaterial getAmById(long amId) {
         return aviationMaterialDao.queryAmById(amId);
     }
+
+    @Override
+    public List<AviationMaterial> getOneAmList() {
+        return aviationMaterialDao.oneQueryAmList();
+    }
+
+    @Override
+    public List<AviationMaterial> getTwoAmList() {
+        return aviationMaterialDao.twoQueryAmList();
+    }
+
+    @Override
+    public List<AviationMaterial> getThreeAmList() {
+        return aviationMaterialDao.threeQueryAmList();
+    }
+
+    @Override
+    public List<AviationMaterial> getFourAmList() {
+        return aviationMaterialDao.fourQueryAmList();
+    }
+
+    @Override
+    public List<AviationMaterial> getFiveAmList() {
+        return aviationMaterialDao.fiveQueryAmList();
+    }
+
+    @Override
+    public int addOneAm(AviationMaterial aviationMaterial) {
+        return aviationMaterialDao.insertOneAm(aviationMaterial);
+    }
 }

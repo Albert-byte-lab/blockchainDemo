@@ -40,4 +40,10 @@ public class AdminController {
     public String amAdd() {
         return  "/amAdd";
     }
+
+
+    @RequestMapping(value = "/addAm")
+    public String addAm() {
+        return  "/addAm";
+    }
 }

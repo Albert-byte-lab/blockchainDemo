@@ -50,4 +50,5 @@
 		WHERE
 		ac_id = #{acId};
 	</delete>
+
 </mapper>

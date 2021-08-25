@@ -47,4 +47,22 @@ public interface AviationMaterialDao {
      * @return
      */
     int deleteAmById(long amId);
+
+    //飞机制造商工程部门 获取对应的零部件信息
+    List<AviationMaterial> oneQueryAmList();
+
+    //零部件供应商 获取对应的零部件信息
+    List<AviationMaterial> twoQueryAmList();
+
+    //飞机制造商总装配厂 获取对应的零部件信息
+    List<AviationMaterial> threeQueryAmList();
+
+    //航空公司 获取对应的零部件信息
+    List<AviationMaterial> fourQueryAmList();
+
+    //飞机修理厂 获取对应的零部件信息
+    List<AviationMaterial> fiveQueryAmList();
+
+    //零部件信息录入
+    int insertOneAm(AviationMaterial aviationMaterial);
 }

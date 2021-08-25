@@ -12,8 +12,8 @@ public class AviationMaterial {
     private String amName;
     //零部件简介
     private String amDesc;
-    //零部件所属种类
-    private String amCategory;
+    //对应所处节点位置
+    private long amCategory;
     //零部件使用年限
     private long amExpireTime;
     //零部件质量合格证编号
@@ -58,11 +58,11 @@ public class AviationMaterial {
         this.amDesc = amDesc;
     }
 
-    public String getAmCategory() {
+    public long getAmCategory() {
         return amCategory;
     }
 
-    public void setAmCategory(String amCategory) {
+    public void setAmCategory(long amCategory) {
         this.amCategory = amCategory;
     }
 
