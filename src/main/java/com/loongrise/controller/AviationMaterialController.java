@@ -41,7 +41,6 @@ public class AviationMaterialController {
         return model;
     }
 
-
     @RequestMapping(value="/addam",method = RequestMethod.POST)
     @ResponseBody
     private Map<String,Object> addAm(HttpServletRequest request){
