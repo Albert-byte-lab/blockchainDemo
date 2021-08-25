@@ -224,29 +224,30 @@
 			</if>
 		</trim>
 		<trim prefix="values(" suffix=")" suffixOverrides="," >
-			<if test="am_name != null">
+			<if test="amName != null">
 				#{amName},
 			</if>
-			<if test="am_desc != null">
+			<if test="amDesc != null">
 				#{amDesc},
 			</if>
-			<if test="am_expire_time != null">
+			<if test="amExpireTime != null">
 				#{amExpireTime},
 			</if>
-			<if test="am_qualified_num != null">
+			<if test="amQualifiedNum != null">
 				#{amQualifiedNum},
 			</if>
-			<if test="am_used_time != null">
+			<if test="amUsedTime != null">
 				#{amUsedTime},
 			</if>
-			<if test="ac_id != null">
+			<if test="aircraft.acId != null">
 				#{aircraft.acId},
 			</if>
-			<if test="am_serial_num != null">
+			<if test="amSerialNum != null">
 				#{amSerialNum},
 			</if>
 		</trim>
 	</insert>
+
 
     <update id="updateAm" parameterType="com.loongrise.entity.AviationMaterial">
         UPDATE am

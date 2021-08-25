@@ -131,7 +131,7 @@ public class AviationMaterialController {
         AviationMaterial am = null;
         try{
             am = mapper.readValue(amStr,AviationMaterial.class);
-            System.out.println("aaaaaaaaaaaaaa"+am.getAircraft().getAcName());
+            System.out.println("aaaaaaaaaaaaaa"+am.getAircraft().getAcId());
             if(am != null){
                 int num = aviationMaterialService.addOneAm(am);
                 if(num > 0){

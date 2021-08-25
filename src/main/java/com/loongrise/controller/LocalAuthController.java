@@ -112,17 +112,13 @@ public class LocalAuthController {
     @ResponseBody
     private Map<String,Object> toAndroidLogin(HttpServletRequest request){
         Map<String,Object> modelMap = new HashMap<>();
-        ObjectMapper mapper = new ObjectMapper();
-        String localAuthStr = HttpServletRequestUtil.getString(request,"localAuthStr");
-        LocalAuth localAuth = null;
+        String username =  request.getParameter("loginname");
+        String password =  request.getParameter("password");
+        System.out.println("username: "+username);
+        LocalAuth localAuth = new LocalAuth();
+        localAuth.setUsername(username);
+        localAuth.setPassword(password);
         UserInfo userInfo = null;
-           try{
-               localAuth = mapper.readValue(localAuthStr,LocalAuth.class);
-               System.out.println("用户名:"+localAuth.getUsername());
-               System.out.println("密码:"+localAuth.getPassword());
-           }catch (IOException e){
-               modelMap.put("success",false);
-           }
         LocalAuth result = localAuthService.getLocalAuthBypwd(localAuth);
         if(result != null){
             System.out.println("用户类型userId:"+result.getUserId());
@@ -131,8 +127,10 @@ public class LocalAuthController {
             System.out.println("address:"+userInfo.getAddress());
             System.out.println("desc "+ userInfo.getDesc());
             if(userInfo != null){
-                request.getSession().setAttribute("userInfo",userInfo);
+                modelMap.put("userInfo",userInfo);
                 modelMap.put("success",true);
+            }else{
+                modelMap.put("success",false);
             }
         }
         return  modelMap;
