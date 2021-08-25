@@ -431,24 +431,33 @@
                                 <thead>
                                 <tr>
                                     <th>零部件名称</th>
-                                    <th>简介</th>
+                                    <th style="max-width: 200px;overflow: hidden;white-space: nowrap;text-overflow:ellipsis;">简介</th>
                                     <th>使用年限</th>
                                     <th>质量合格证编号</th>
                                     <th>产品序列号</th>
                                     <th>已使用次数</th>
                                     <th>所属机型</th>
+                                    <th>区块链溯源</th>
                                 </tr>
 
                                 </thead>
                                 <tbody>
                                 <tr th:each="item:${amList}">
                                     <td th:text="${item.amName}"></td>
-                                    <td th:text="${item.amDesc}"></td>
+                                    <td th:text="${item.amDesc}" style="max-width: 200px;overflow: hidden;white-space: nowrap;text-overflow:ellipsis;"></td>
                                     <td th:text="${item.amExpireTime}"></td>
                                     <td th:text="${item.amQualifiedNum}"></td>
                                     <td th:text="${item.amSerialNum}"></td>
                                     <td th:text="${item.amUsedTime}"></td>
                                     <td th:text="${item.aircraft.acName}"></td>
+                                    <td>
+                                        <a
+                                                th:href="@{'trace/'+${item.amId}}"
+                                                data-toggle="tooltip" title="" class="btn btn-info"
+                                                data-original-title="">
+                                            <i>追踪</i>
+                                        </a>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>

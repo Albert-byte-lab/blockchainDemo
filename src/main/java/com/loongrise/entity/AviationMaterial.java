@@ -26,6 +26,8 @@ public class AviationMaterial {
     //零部件所属飞机
     private Aircraft aircraft;
 
+
+
     public long getAmId() {
         return amId;
     }
