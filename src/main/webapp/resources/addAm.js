@@ -6,6 +6,8 @@ $(function(){
 	var  listUrl = '/blockchainDemo/am/showaircraftinfo';
 
 	var addAmUrl = '/blockchainDemo/am/oneaddam';
+
+	var refreshListUrl = '/blockchainDemo/am/oneshowam';
 	getAircraftInfo();
 
 	function getAircraftInfo(){
@@ -34,9 +36,6 @@ $(function(){
 				return !this.selected;
 			}).data('id')
 		};
-		alert("am.amName"+am.amName);
-		alert("am.amDesc"+am.amDesc);
-		alert("am.amExpireTime"+am.amExpireTime);
 		var formData = new FormData();
 		formData.append('amStr',JSON.stringify(am));
 
@@ -50,6 +49,8 @@ $(function(){
 			success : function(data) {
 				if (data.success) {
 					alert("添加成功!");
+					//重新获取数据库的值进行刷新。
+					window.location.href = "/blockchainDemo/am/oneshowam";
 				} else {
 					alert('提交失败！');
 				}

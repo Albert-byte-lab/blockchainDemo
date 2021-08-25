@@ -40,10 +40,65 @@
 	</select>
 
     <insert id="insertHistory" useGeneratedKeys="true" keyColumn="history_id" keyProperty="historyId" parameterType="com.loongrise.entity.History">
-        INSERT INTO history(prev_id,next_id,hashcode,epc,tid,name,address,date,am_id)
-        VALUES(#{pre.historyId},#{next.historyId},#{hashCode},#{epc},#{tid},#{name},#{address},#{date},#{amId});
+        INSERT INTO history
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pre != null">
+                prev_id,
+            </if>
+            <if test="next != null">
+                next_id,
+            </if>
+            <if test="hashCode != null">
+                hashcode,
+            </if>
+            <if test="epc != null">
+                epc,
+            </if>
+            <if test="tid != null">
+                tid,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="date != null">
+                date,
+            </if>
+            <if test="amId != null">
+                am_id,
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides="," >
+            <if test="pre != null">
+                #{pre},
+            </if>
+            <if test="next != null">
+                #{next},
+            </if>
+            <if test="hashCode != null">
+                #{hashcode},
+            </if>
+            <if test="epc != null">
+                #{epc},
+            </if>
+            <if test="tid != null">
+                #{tid},
+            </if>
+            <if test="name != null">
+                #{name},
+            </if>
+            <if test="address != null">
+                #{address},
+            </if>
+            <if test="date != null">
+                #{date},
+            </if>
+            <if test="amId != null">
+                #{amId},
+            </if>
+        </trim>
 	</insert>
-
-
 
 </mapper>

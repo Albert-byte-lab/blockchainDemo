@@ -8,9 +8,9 @@ import java.util.Date;
 public class History {
     private long historyId;
     //当前结点的上一个结点
-    private History pre;
+    private long pre;
     //当前结点的下一个结点
-    private History next;
+    private long next;
     //当前结点的上一个结点的整个hash值
     private String hashCode;
     private String epc;
@@ -39,19 +39,19 @@ public class History {
         this.historyId = historyId;
     }
 
-    public History getPre() {
+    public long getPre() {
         return pre;
     }
 
-    public void setPre(History pre) {
+    public void setPre(long pre) {
         this.pre = pre;
     }
 
-    public History getNext() {
+    public long getNext() {
         return next;
     }
 
-    public void setNext(History next) {
+    public void setNext(long next) {
         this.next = next;
     }
 

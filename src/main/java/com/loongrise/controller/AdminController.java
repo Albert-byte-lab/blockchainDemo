@@ -46,4 +46,9 @@ public class AdminController {
     public String addAm() {
         return  "/addAm";
     }
+
+    @RequestMapping(value = "/amtrace")
+    public String amTrace() {
+        return  "/amTrace";
+    }
 }

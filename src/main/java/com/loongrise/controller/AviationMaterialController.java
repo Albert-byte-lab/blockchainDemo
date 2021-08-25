@@ -41,55 +41,6 @@ public class AviationMaterialController {
         return model;
     }
 
-    @RequestMapping(value="/addam",method = RequestMethod.POST)
-    @ResponseBody
-    private Map<String,Object> addAm(HttpServletRequest request){
-        Map<String,Object> modelMap = new HashMap<>();
-        String amStr = HttpServletRequestUtil.getString(request,"amStr");
-        String rfidStr = HttpServletRequestUtil.getString(request,"rfidStr");
-        ObjectMapper mapper = new ObjectMapper();
-        AviationMaterial am = null;
-        RFID rfid = null;
-        try{
-            am = mapper.readValue(amStr,AviationMaterial.class);
-            rfid = mapper.readValue(rfidStr,RFID.class);
-            System.out.println("epc值为: "+rfid.getEpc());
-            System.out.println("tid值为: "+rfid.getTid());
-            System.out.println(am.getAmName());
-            if(am != null && rfid != null){
-                int num = aviationMaterialService.addAm(am);
-                if(num > 0){
-                    //获取新增零部件的id值
-                    long newId = aviationMaterialService.getNewId();
-                    System.out.println("新增零部件的Id为:"+newId);
-                    rfid.setAmId(newId);
-                    //之后将新增的id及rfid标签信息一起加入到rfid表中
-                  int t =   rfidService.addRFID(rfid);
-                  //获取当前结点Name address desc
-                    UserInfo userInfo = (UserInfo) request.getSession().getAttribute("userInfo");
-                    System.out.println("address:"+userInfo.getAddress());
-                    History history = new History();
-                    history.setPre(null);
-                    history.setNext(null);
-                    history.setAddress(userInfo.getAddress());
-                    history.setAmId(newId);
-                    history.setEpc(rfid.getEpc());
-                    history.setTid(rfid.getTid());
-                    history.setName(userInfo.getName());
-                    history.setAddress(userInfo.getAddress());
-                    history.setDate(new Date());
-                    history.setHashCode("tt");
-                    int h = historyService.addHistory(history);
-                  if(t > 0 && h > 0){
-                      modelMap.put("success",true);
-                  }
-                }
-            }
-        }catch (IOException e){
-            modelMap.put("success",false);
-        }
-        return modelMap;
-    }
 
     //飞机制造商工程部门-展示零部件信息,仅包含(name desc 使用年限 所属机型，其他信息为空)
     @RequestMapping(value="/oneshowam",method = RequestMethod.GET)
@@ -132,9 +83,26 @@ public class AviationMaterialController {
             am = mapper.readValue(amStr,AviationMaterial.class);
             System.out.println("aaaaaaaaaaaaaa"+am.getAircraft().getAcId());
             if(am != null){
+                am.setAmCategory(0);
+                System.out.println("am.setAmCategory== "+am.getAmCategory());
                 int num = aviationMaterialService.addOneAm(am);
                 if(num > 0){
-                    modelMap.put("success",true);
+                    //录入零件信息时，就添加相应信息到history表中。
+                    History history = new History();
+                    //1.获取用户信息.
+                    UserInfo userInfo = (UserInfo) request.getSession().getAttribute("userInfo");
+
+                    history.setName(userInfo.getName());
+                    history.setAddress(userInfo.getAddress());
+                    history.setDate(new Date());
+                    //获取新增的零部件id值
+                    long newId = aviationMaterialService.getNewId();
+                    history.setAmId(newId);
+                    System.out.println("newId是:------"+newId);
+                    int i = historyService.addHistory(history);
+                    if(i>0){
+                        modelMap.put("success",true);
+                    }
                 }
             }
         }catch (IOException e){

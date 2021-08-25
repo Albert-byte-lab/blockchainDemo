@@ -222,6 +222,9 @@
 			<if test="amSerialNum != null">
 				am_serial_num,
 			</if>
+			<if test="amCategory != null">
+				am_category,
+			</if>
 		</trim>
 		<trim prefix="values(" suffix=")" suffixOverrides="," >
 			<if test="amName != null">
@@ -244,6 +247,9 @@
 			</if>
 			<if test="amSerialNum != null">
 				#{amSerialNum},
+			</if>
+			<if test="amCategory != null">
+				#{amCategory},
 			</if>
 		</trim>
 	</insert>
