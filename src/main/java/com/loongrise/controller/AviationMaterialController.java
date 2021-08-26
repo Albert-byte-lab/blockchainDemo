@@ -6,9 +6,7 @@ import com.loongrise.service.*;
 import com.loongrise.util.HttpServletRequestUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -95,6 +93,7 @@ public class AviationMaterialController {
                     history.setName(userInfo.getName());
                     history.setAddress(userInfo.getAddress());
                     history.setDate(new Date());
+                    history.setAmCategory(0);
                     //获取新增的零部件id值
                     long newId = aviationMaterialService.getNewId();
                     history.setAmId(newId);
@@ -160,7 +159,26 @@ public class AviationMaterialController {
     }
 
 
-
-
-
+    //追踪 Trace
+    @GetMapping("/trace/{amId}")
+    @ResponseBody
+    private ModelAndView trace(@PathVariable String amId,HttpServletRequest request){
+        ModelAndView modelAndView = null;
+        Long realAmId = Long.parseLong(amId);
+        System.out.println("realAmId: "+realAmId);
+        //根据零部件Id获取对应的零部件历史记录信息
+        List<History> historyListByAmId = historyService.getHistoryListByAmId(realAmId);
+        if(historyListByAmId != null){
+            for(History history:historyListByAmId){
+                System.out.print("getName=  "+history.getName()+"   ");
+                System.out.print("getAddress=  "+history.getAddress()+"   ");
+                System.out.print("getDate=  "+history.getDate()+"    ");
+                System.out.println("getCategory=  "+history.getAmCategory());
+                System.out.println();
+            }
+            request.setAttribute("historyList",historyListByAmId);
+            modelAndView = new ModelAndView("amTrace");
+        }
+        return  modelAndView;
+    }
 }

@@ -16,7 +16,8 @@
         name,
         address,
         date,
-        am_id
+        am_id,
+        am_category
 		FROM
 		history
 	</select>
@@ -32,7 +33,8 @@
         name,
         address,
         date,
-        am_id
+        am_id,
+        am_category
 		FROM
 		history
 		WHERE
@@ -69,6 +71,9 @@
             <if test="amId != null">
                 am_id,
             </if>
+            <if test="amCategory != null">
+                am_category,
+            </if>
         </trim>
         <trim prefix="values(" suffix=")" suffixOverrides="," >
             <if test="pre != null">
@@ -97,6 +102,9 @@
             </if>
             <if test="amId != null">
                 #{amId},
+            </if>
+            <if test="amCategory != null">
+                #{amCategory},
             </if>
         </trim>
 	</insert>

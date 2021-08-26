@@ -22,6 +22,15 @@ public class History {
 
     //对应的零部件
     private long  amId;
+    private long amCategory;
+
+    public long getAmCategory() {
+        return amCategory;
+    }
+
+    public void setAmCategory(long amCategory) {
+        this.amCategory = amCategory;
+    }
 
     public long getAmId() {
         return amId;

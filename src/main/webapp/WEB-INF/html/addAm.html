@@ -39,7 +39,7 @@
             </a>
         </div>
         <div>
-            <h4 class="logo-text">大数据信息管理中心</h4>
+            <h4 class="logo-text">零部件全生命</h4>
         </div>
         <a href="javascript:;" class="toggle-btn ml-auto"> <i class="bx bx-menu"></i>
         </a>
@@ -67,6 +67,9 @@
                 </li>
                 <li th:if = "${session.userInfo.getUserId()} == 5">
                     <a href=""><i class="bx bx-right-arrow-alt"></i>零部件过往信息查看及录入</a>
+                </li>
+                <li>
+                    <a href="javascript:history.go(-1)"><i class="bx bx-right-arrow-alt"></i>返回</a>
                 </li>
             </ul>
         </li>

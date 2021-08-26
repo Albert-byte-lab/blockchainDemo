@@ -37,7 +37,7 @@
                 </a>
             </div>
             <div>
-                <h4 class="logo-text">大数据信息管理中心</h4>
+                <h4 class="logo-text">零部件全生命</h4>
             </div>
             <a href="javascript:;" class="toggle-btn ml-auto"> <i class="bx bx-menu"></i>
             </a>
@@ -65,6 +65,9 @@
                     </li>
                     <li th:if = "${session.userInfo.getUserId()} == 5">
                         <a href="/blockchainDemo/am/fiveshowam"><i class="bx bx-right-arrow-alt"></i>零部件过往信息查看及录入</a>
+                    </li>
+                    <li>
+                        <a href="javascript:history.go(-1)"><i class="bx bx-right-arrow-alt"></i>返回</a>
                     </li>
                 </ul>
             </li>
@@ -415,46 +418,56 @@
                         <!--container-->
 
                         <div class="container py-2">
-                            <h2 class="font-weight-light text-center text-muted py-3">救生衣溯源</h2>
+                            <h2 class="font-weight-light text-center text-muted py-3">零部件溯源</h2>
+
                             <!-- timeline item 1 -->
-                            <div class="row no-gutters">
-                                <div class="col-sm">
-                                    <!--spacer-->
-                                </div>
-                                <!-- timeline item 1 center dot -->
-                                <div class="col-sm-1 text-center flex-column d-none d-sm-flex">
-                                    <div class="row h-50">
-                                        <div class="col">&nbsp;</div>
-                                        <div class="col">&nbsp;</div>
-                                    </div>
-                                    <h5 class="m-2">
-                                        <span class="badge badge-pill bg-light border">&nbsp;</span>
-                                    </h5>
-                                    <div class="row h-50">
-                                        <div class="col border-right">&nbsp;</div>
-                                        <div class="col">&nbsp;</div>
-                                    </div>
-                                </div>
-                                <!-- timeline item 1 event content -->
-                                <div class="col-sm py-2">
-                                    <div class="card radius-15">
-                                        <div class="card-body">
-                                            <div class="float-right text-muted small">更新时间：Jan 9th 2019 7:00 AM</div>
-                                            <h4 class="card-title text-muted">设计阶段</h4>
-                                            <p class="card-text">在上海市人民路32号中国商飞研究院被设计，主要是航空领域救生衣</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+<!--                            <div class="row no-gutters">-->
+<!--                                <div class="col-sm">-->
+<!--                                    &lt;!&ndash;spacer&ndash;&gt;-->
+<!--                                </div>-->
+<!--                                &lt;!&ndash; timeline item 1 center dot &ndash;&gt;-->
+<!--                                <div class="col-sm-1 text-center flex-column d-none d-sm-flex">-->
+<!--                                    <div class="row h-50">-->
+<!--                                        <div class="col">&nbsp;</div>-->
+<!--                                        <div class="col">&nbsp;</div>-->
+<!--                                    </div>-->
+<!--                                    <h5 class="m-2">-->
+<!--                                        <span class="badge badge-pill bg-light border">&nbsp;</span>-->
+<!--                                    </h5>-->
+<!--                                    <div class="row h-50">-->
+<!--                                        <div class="col border-right">&nbsp;</div>-->
+<!--                                        <div class="col">&nbsp;</div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                &lt;!&ndash; timeline item 1 event content &ndash;&gt;-->
+<!--                                <div class="col-sm py-2" th:each="item:${historyList}">-->
+<!--                                    <div class="card radius-15">-->
+<!--                                        <div class="card-body">-->
+<!--                                            <div class="float-right text-muted small" th:text="${item.date}"></div>-->
+<!--                                            <h4 class="card-title text-muted" th:if = "${item.getAmCategory()} == 0">设计阶段</h4>-->
+<!--                                            <h4 class="card-title text-muted" th:if = "${item.getAmCategory()} == 1">制造阶段</h4>-->
+<!--                                            <h4 class="card-title text-muted" th:if = "${item.getAmCategory()} == 2">装配阶段</h4>-->
+<!--                                            <h4 class="card-title text-muted" th:if = "${item.getAmCategory()} == 3">使用阶段</h4>-->
+<!--                                            <h4 class="card-title text-muted" th:if = "${item.getAmCategory()} == 4">维修阶段</h4>-->
+<!--                                            <p class="card-text" th:text="${item.address}"></p>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
                             <!--/row-->
+
                             <!-- timeline item 2 -->
-                            <div class="row no-gutters">
+                            <div class="row no-gutters" th:each="item:${historyList}">
                                 <div class="col-sm py-2">
                                     <div class="card border-primary shadow radius-15">
                                         <div class="card-body">
-                                            <div class="float-right text-primary small">更新时间Jan： 10th 2019 8:30 AM</div>
-                                            <h4 class="card-title text-primary">制造阶段</h4>
-                                            <p class="card-text">在北京市南京路32号中国商飞制造所院被制造，主要是使用航空材料来组装救生衣</p>
+                                            <div class="float-right text-primary small" th:text="${item.date}"></div>
+                                            <h4 class="card-title text-primary" th:if = "${item.getAmCategory()} == 0">设计阶段</h4>
+                                            <h4 class="card-title text-primary" th:if = "${item.getAmCategory()} == 1">制造阶段</h4>
+                                            <h4 class="card-title text-primary" th:if = "${item.getAmCategory()} == 2">装配阶段</h4>
+                                            <h4 class="card-title text-primary" th:if = "${item.getAmCategory()} == 3">使用阶段</h4>
+                                            <h4 class="card-title text-primary" th:if = "${item.getAmCategory()} == 4">维修阶段</h4>
+                                            <p class="card-text"th:text="${item.address}"></p>
                                         </div>
                                     </div>
                                 </div>
@@ -476,99 +489,6 @@
                                 </div>
                             </div>
                             <!--/row-->
-                            <!-- timeline item 3 -->
-                            <div class="row no-gutters">
-                                <div class="col-sm">
-                                    <!--spacer-->
-                                </div>
-                                <div class="col-sm-1 text-center flex-column d-none d-sm-flex">
-                                    <div class="row h-50">
-                                        <div class="col border-right">&nbsp;</div>
-                                        <div class="col">&nbsp;</div>
-                                    </div>
-                                    <h5 class="m-2">
-                                        <span class="badge badge-pill bg-light border">&nbsp;</span>
-                                    </h5>
-                                    <div class="row h-50">
-                                        <div class="col border-right">&nbsp;</div>
-                                        <div class="col">&nbsp;</div>
-                                    </div>
-                                </div>
-                                <div class="col-sm py-2">
-                                    <div class="card radius-15">
-                                        <div class="card-body">
-                                            <div class="float-right text-muted small">更新时间：Jan 11th 2019 8:30 AM</div>
-                                            <h4 class="card-title">组装阶段</h4>
-                                            <p>在南京市佛山路34号中国商飞组装研究院完成组装</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/row-->
-                            <!-- timeline item 4 -->
-                            <div class="row no-gutters">
-                                <div class="col-sm py-2">
-                                    <div class="card radius-15">
-                                        <div class="card-body">
-                                            <div class="float-right text-muted small">Jan 12th 2019 11:30 AM</div>
-                                            <h4 class="card-title">航空公司阶段</h4>
-                                            <p>在成都市双流区双流机场，成都航空CR929飞机上使用</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-1 text-center flex-column d-none d-sm-flex">
-                                    <div class="row h-50">
-                                        <div class="col border-right">&nbsp;</div>
-                                        <div class="col">&nbsp;</div>
-                                    </div>
-                                    <h5 class="m-2">
-                                        <span class="badge badge-pill bg-light border">&nbsp;</span>
-                                    </h5>
-                                    <div class="row h-50">
-                                        <div class="col">&nbsp;</div>
-                                        <div class="col">&nbsp;</div>
-                                    </div>
-                                </div>
-                                <div class="col-sm">
-                                    <!--spacer-->
-                                </div>
-                            </div>
-                            <!--/row-->
-
-
-                            <!--/row-->
-                            <!-- timeline item 3 -->
-                            <div class="row no-gutters">
-                                <div class="col-sm">
-                                    <!--spacer-->
-                                </div>
-                                <div class="col-sm-1 text-center flex-column d-none d-sm-flex">
-                                    <div class="row h-50">
-                                        <div class="col border-right">&nbsp;</div>
-                                        <div class="col">&nbsp;</div>
-                                    </div>
-                                    <h5 class="m-2">
-                                        <span class="badge badge-pill bg-light border">&nbsp;</span>
-                                    </h5>
-                                    <div class="row h-50">
-                                        <div class="col border-right">&nbsp;</div>
-                                        <div class="col">&nbsp;</div>
-                                    </div>
-                                </div>
-                                <div class="col-sm py-2">
-                                    <div class="card radius-15">
-                                        <div class="card-body">
-                                            <div class="float-right text-muted small">更新时间：Jan 11th 2019 8:30 AM</div>
-                                            <h4 class="card-title">维修阶段</h4>
-                                            <p>重庆市虞山区进行维修</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/row-->
-
-
-
 
 
 
