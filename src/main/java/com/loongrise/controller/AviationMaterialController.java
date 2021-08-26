@@ -6,7 +6,6 @@ import com.loongrise.service.*;
 import com.loongrise.util.HttpServletRequestUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -94,6 +93,7 @@ public class AviationMaterialController {
                     history.setName(userInfo.getName());
                     history.setAddress(userInfo.getAddress());
                     history.setDate(new Date());
+                    history.setAmCategory(0);
                     //获取新增的零部件id值
                     long newId = aviationMaterialService.getNewId();
                     history.setAmId(newId);
@@ -158,17 +158,46 @@ public class AviationMaterialController {
         return modelAndView;
     }
 
-    @GetMapping("/editam/{amId}")
-    public String editam(Model model, @PathVariable Long amId){
-        System.out.println(amId);
-        AviationMaterial am = aviationMaterialService.getAmById(amId);
-        RFID rfid =
-        model.addAttribute("am",am);
-        return "editAm";
+
+    //追踪 Trace
+    @GetMapping("/trace/{amId}")
+    @ResponseBody
+    private ModelAndView trace(@PathVariable String amId,HttpServletRequest request){
+        ModelAndView modelAndView = null;
+        Long realAmId = Long.parseLong(amId);
+        System.out.println("realAmId: "+realAmId);
+        long amCategory = 0;
+        //获取目前登录的角色信息
+        UserInfo userInfo = (UserInfo) request.getSession().getAttribute("userInfo");
+        System.out.println("userId是: "+userInfo.getUserId());
+        long userId = userInfo.getUserId();
+        if(userId == 1){
+            amCategory = 0;
+        }else if(userId == 2){
+            amCategory = 1;
+        }else if(userId == 3){
+            amCategory = 2;
+        }else if(userId == 4){
+            amCategory = 3;
+        }else if(userId == 5){
+            amCategory = 4;
+        }
+        History history = new History();
+        history.setAmId(realAmId);
+        history.setAmCategory(amCategory);
+        //根据零部件Id获取对应的零部件历史记录信息
+        List<History> historyListByAmId = historyService.getHistoryListByAmId(history);
+        if(historyListByAmId != null){
+            for(History h:historyListByAmId){
+                System.out.print("getName=  "+h.getName()+"   ");
+                System.out.print("getAddress=  "+h.getAddress()+"   ");
+                System.out.print("getDate=  "+h.getDate()+"    ");
+                System.out.println("getCategory=  "+h.getAmCategory());
+                System.out.println();
+            }
+            request.setAttribute("historyList",historyListByAmId);
+            modelAndView = new ModelAndView("amTrace");
+        }
+        return  modelAndView;
     }
-
-
-
-
-
 }

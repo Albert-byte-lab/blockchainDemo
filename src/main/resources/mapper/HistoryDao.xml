@@ -22,7 +22,7 @@
 		history
 	</select>
 
-    <select id="queryHistoryListByAmId"  resultType="com.loongrise.entity.History">
+    <select id="queryHistoryListByAmId"  parameterType="com.loongrise.entity.History"  resultType="com.loongrise.entity.History">
 		SELECT
 		history_id,
         prev_id,
@@ -38,6 +38,8 @@
 		FROM
 		history
 		WHERE
+		am_category &lt;= #{amCategory}
+		AND
 		am_id = #{amId};
 	</select>
 
