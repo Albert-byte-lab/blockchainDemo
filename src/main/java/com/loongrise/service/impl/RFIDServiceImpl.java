@@ -45,4 +45,10 @@ public class RFIDServiceImpl implements RFIDService {
         }
         return null;
     }
+
+    @Override
+    public RFID queryRFIDById(Long rdidID) {
+        return rfidDao.queryRFIDById();
+    }
+
 }

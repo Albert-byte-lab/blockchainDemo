@@ -15,4 +15,6 @@ public interface RFIDService {
 
     //批量获取epc值对应的标签信息
     List<RFID> getRFIDListByEpcs(List<String> epcList);
+
+    RFID queryRFIDById(Long rdidID);
 }
