@@ -12,5 +12,5 @@ public interface HistoryDao {
     List<History> queryHistoryList();
 
     //根据amId获取对应的历史记录
-    List<History> queryHistoryListByAmId(long amId);
+    List<History> queryHistoryListByAmId(History history);
 }

@@ -166,14 +166,33 @@ public class AviationMaterialController {
         ModelAndView modelAndView = null;
         Long realAmId = Long.parseLong(amId);
         System.out.println("realAmId: "+realAmId);
+        long amCategory = 0;
+        //获取目前登录的角色信息
+        UserInfo userInfo = (UserInfo) request.getSession().getAttribute("userInfo");
+        System.out.println("userId是: "+userInfo.getUserId());
+        long userId = userInfo.getUserId();
+        if(userId == 1){
+            amCategory = 0;
+        }else if(userId == 2){
+            amCategory = 1;
+        }else if(userId == 3){
+            amCategory = 2;
+        }else if(userId == 4){
+            amCategory = 3;
+        }else if(userId == 5){
+            amCategory = 4;
+        }
+        History history = new History();
+        history.setAmId(realAmId);
+        history.setAmCategory(amCategory);
         //根据零部件Id获取对应的零部件历史记录信息
-        List<History> historyListByAmId = historyService.getHistoryListByAmId(realAmId);
+        List<History> historyListByAmId = historyService.getHistoryListByAmId(history);
         if(historyListByAmId != null){
-            for(History history:historyListByAmId){
-                System.out.print("getName=  "+history.getName()+"   ");
-                System.out.print("getAddress=  "+history.getAddress()+"   ");
-                System.out.print("getDate=  "+history.getDate()+"    ");
-                System.out.println("getCategory=  "+history.getAmCategory());
+            for(History h:historyListByAmId){
+                System.out.print("getName=  "+h.getName()+"   ");
+                System.out.print("getAddress=  "+h.getAddress()+"   ");
+                System.out.print("getDate=  "+h.getDate()+"    ");
+                System.out.println("getCategory=  "+h.getAmCategory());
                 System.out.println();
             }
             request.setAttribute("historyList",historyListByAmId);

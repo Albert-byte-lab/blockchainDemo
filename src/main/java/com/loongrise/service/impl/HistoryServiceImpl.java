@@ -26,7 +26,7 @@ public class HistoryServiceImpl implements HistoryService {
     }
 
     @Override
-    public List<History> getHistoryListByAmId(long amId) {
-        return historyDao.queryHistoryListByAmId(amId);
+    public List<History> getHistoryListByAmId(History history) {
+        return historyDao.queryHistoryListByAmId(history);
     }
 }

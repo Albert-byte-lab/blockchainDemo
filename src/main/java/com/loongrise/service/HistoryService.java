@@ -10,5 +10,5 @@ public interface HistoryService {
 
     int addHistory(History history);
 
-    List<History> getHistoryListByAmId(long amId);
+    List<History> getHistoryListByAmId(History history);
 }
