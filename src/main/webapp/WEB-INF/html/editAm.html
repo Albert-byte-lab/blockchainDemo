@@ -10,21 +10,21 @@
     <!--favicon-->
     <link rel="icon" href="../resources/assets/images/favicon-32x32.png" type="image/png" />
     <!--plugins-->
-    <link href="../resources/assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
-    <link href="../resources/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
-    <link href="../resources/assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
+    <link th:href="@{/resources/assets/plugins/simplebar/css/simplebar.css}" rel="stylesheet" />
+    <link th:href="@{/resources/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css}" rel="stylesheet" />
+    <link th:href="@{/resources/assets/plugins/metismenu/css/metisMenu.min.css}" rel="stylesheet" />
 
     <!-- loader-->
-    <link href="../resources/assets/css/pace.min.css" rel="stylesheet" />
-    <script src="../resources/assets/js/pace.min.js"></script>
+    <link th:href="@{/resources/assets/css/pace.min.css}" rel="stylesheet" />
+    <script th:src="@{/resources/assets/js/pace.min.js}"></script>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../resources/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" th:href="@{/resources/assets/css/bootstrap.min.css}" />
     <!-- Icons CSS -->
-    <link rel="stylesheet" href="../resources/assets/css/icons.css" />
+    <link rel="stylesheet" th:href="@{/resources/assets/css/icons.css}" />
     <!-- App CSS -->
-    <link rel="stylesheet" href="../resources/assets/css/app.css" />
-    <link rel="stylesheet" href="../resources/assets/css/dark-sidebar.css" />
-    <link rel="stylesheet" href="../resources/assets/css/dark-theme.css" />
+    <link rel="stylesheet" th:href="@{/resources/assets/css/app.css}" />
+    <link rel="stylesheet" th:href="@{/resources/assets/css/dark-sidebar.css}" />
+    <link rel="stylesheet" th:href="@{/resources/assets/css/dark-theme.css}" />
 </head>
 <body>
 
@@ -422,33 +422,33 @@
                                     <h4 class="mb-0 text-primary">修改零部件信息</h4>
                                 </div>
                                 <hr/>
-
+                                    <form th:action="@{'/am/editam/'+${am.amId}}" method="post">
                                     <div class="form-body">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label>零部件名称</label>
-                                            <input type="text" class="form-control radius-30" id = "amName" th:text="${am.amName}"/>
+                                            <input type="text" class="form-control radius-30" id = "amName" th:value="${am.amName}" />
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label>简介</label>
-                                            <input type="text" class="form-control radius-30"  id = "amDesc" th:text="${am.amDesc}"/>
+                                            <input type="text" class="form-control radius-30"  id = "amDesc" th:value="${am.amDesc}"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label>年限</label>
-                                        <input type="text" class="form-control radius-30" id="amExpireTime" th:text="${am.amExpireTime}"/>
+                                        <input type="text" class="form-control radius-30" id="amExpireTime" th:value="${am.amExpireTime}"/>
                                     </div>
                                         <div class="form-group">
                                             <label>合格证编号</label>
-                                            <input type="text" class="form-control radius-30" id="amQualifiedNum" th:text="${am.amQualifiedNum}"/>
+                                            <input type="text" class="form-control radius-30" id="amQualifiedNum" th:value="${am.amQualifiedNum}"/>
                                         </div>
                                         <div class="form-group">
                                             <label>EPC号</label>
-                                            <input type="text" class="form-control radius-30" id="epc"/>
+                                            <input type="text" class="form-control radius-30" id="epc" th:value="${rfid.epc}"/>
                                         </div>
                                         <div class="form-group">
                                             <label>TID</label>
-                                            <input type="text" class="form-control radius-30" id="tid"/>
+                                            <input type="text" class="form-control radius-30" id="tid" th:value="${rfid.tid}"/>
                                         </div>
                                     <div class="form-group">
                                         <label>所属机型</label>
@@ -457,11 +457,11 @@
                                         </select>
                                     </div>
                                     <div class="btn-group mt-3 w-100">
-                                        <button type="button" class="btn btn-outline-info m-1 px-3 radius-30 btn-block " id="submit">提交</button>
+                                        <button class="btn btn-outline-info m-1 px-3 radius-30 btn-block " id="submit" type="submit">提交</button>
                                         <button type="button" class="btn btn-outline-info m-1 px-5 radius-30 "><a href="javascript:history.go(-1)">返回</a></button>
                                         </div>
                                     </div>
-
+                                    </form>
                             </div>
                         </div>
                     </div>
@@ -471,17 +471,17 @@
     </div>
     <!--end page-wrapper-->
 </div>
-<script src="../resources/assets/js/jquery.min.js"></script>
-<script src="../resources/assets/js/popper.min.js"></script>
-<script src="../resources/assets/js/bootstrap.min.js"></script>
+<script th:src="@{/resources/assets/js/jquery.min.js}"></script>
+<script th:src="@{/resources/assets/js/popper.min.js}"></script>
+<script th:src="@{/resources/assets/js/bootstrap.min.js}"></script>
 <!--plugins-->
-<script src="../resources/assets/plugins/simplebar/js/simplebar.min.js"></script>
-<script src="../resources/assets/plugins/metismenu/js/metisMenu.min.js"></script>
-<script src="../resources/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
-<script src="../resources/logout.js" type="text/javascript"></script>
-<script src="../resources/addAm.js" type="text/javascript"></script>
+<script th:src="@{/resources/assets/plugins/simplebar/js/simplebar.min.js}"></script>
+<script th:src="@{/resources/assets/plugins/metismenu/js/metisMenu.min.js}"></script>
+<script th:src="@{/resources/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js}"></script>
+<script th:src="@{/resources/logout.js}" type="text/javascript"></script>
+
 <!-- App JS -->
 
-<script src="../resources/assets/js/app.js"></script>
+<script th:src="@{/resources/assets/js/app.js}"></script>
 </body>
 </html>

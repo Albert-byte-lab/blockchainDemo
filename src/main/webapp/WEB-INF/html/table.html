@@ -441,7 +441,7 @@
                                     <th>已使用次数</th>
                                     <th>所属机型</th>
                                     <th>区块链溯源</th>
-                                    <th>操作</th>
+                                    <th th:if = "${session.userInfo.getUserId()} != 1">操作</th>
                                 </tr>
 
                                 </thead>
@@ -462,9 +462,9 @@
                                             <i>追踪</i>
                                         </a>
                                     </td>
-                                    <td>
+                                    <td th:if = "${session.userInfo.getUserId()} != 1">
                                         <a
-                                                th:href="@{'/am/editam'+${item.amId}}"
+                                                th:href="@{'/am/editam/'+${item.amId}}"
                                                 data-toggle="tooltip" title="" class="btn btn-info"
                                                 data-original-title="">
                                             <i>编辑</i>

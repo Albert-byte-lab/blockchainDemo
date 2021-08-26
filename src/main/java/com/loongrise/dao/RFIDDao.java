@@ -10,10 +10,10 @@ public interface RFIDDao {
 
     List<RFID> queryRFIDList();
 
-    RFID queryRFIDById(int rfidId);
+    RFID queryRFIDById(Long rfidId);
 
     //根据epc值获取对应的标签信息
     RFID queryRFIDByEpc(String epc);
 
-    RFID queryRFIDById(Long id);
+
 }

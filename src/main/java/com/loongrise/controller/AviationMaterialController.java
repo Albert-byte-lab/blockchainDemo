@@ -6,6 +6,7 @@ import com.loongrise.service.*;
 import com.loongrise.util.HttpServletRequestUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -201,4 +202,24 @@ public class AviationMaterialController {
         }
         return  modelAndView;
     }
+
+    @GetMapping("/editam/{amId}")
+    public String editam(Model model, @PathVariable Long amId){
+        System.out.println(amId);
+        AviationMaterial am = aviationMaterialService.getAmById(amId);
+        RFID rfid = rfidService.queryRFIDById(amId);
+                model.addAttribute("am",am);
+                model.addAttribute("rfid",rfid);
+        return "editAm";
+    }
+
+    @PostMapping("/editam/{amId}")
+    public String updateamHistory(Model model, RFID rfId,AviationMaterial am,@PathVariable Long amId){
+        System.out.println(rfId.getEpc());
+        System.out.println("_______________________________");
+        System.out.println(am.getAmDesc());
+        System.out.println(amId+"_____________________________");
+        return "test";
+    }
+
 }

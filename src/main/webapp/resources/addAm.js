@@ -9,7 +9,6 @@ $(function(){
 
 	var refreshListUrl = '/blockchainDemo/am/oneshowam';
 	getAircraftInfo();
-
 	function getAircraftInfo(){
 		$.getJSON(listUrl,function (data){
 			if(data.success){
