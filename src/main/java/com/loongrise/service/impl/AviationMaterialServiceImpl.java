@@ -61,4 +61,9 @@ public class AviationMaterialServiceImpl implements AviationMaterialService {
     public int addOneAm(AviationMaterial aviationMaterial) {
         return aviationMaterialDao.insertOneAm(aviationMaterial);
     }
+
+    @Override
+    public int modifyOneAm(AviationMaterial aviationMaterial) {
+        return aviationMaterialDao.updateAm(aviationMaterial);
+    }
 }

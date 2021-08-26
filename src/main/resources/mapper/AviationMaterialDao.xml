@@ -258,7 +258,13 @@
         UPDATE am
         <set>
             <if test="amName != null">am_name = #{amName},</if>
-            <if test="amDesc != null">am_desc = #{amDesc}</if>
+            <if test="amDesc != null">am_desc = #{amDesc},</if>
+			<if test="amExpireTime != null">am_expire_time = #{amExpireTime},</if>
+			<if test="amQualifiedNum != null">am_qualified_num = #{amQualifiedNum},</if>
+			<if test="amUsedTime != null">am_used_time = #{amUsedTime},</if>
+			<if test="aircraft != null and aircraft.acId != null">ac_id = #{aircraft.acId},</if>
+			<if test="amSerialNum != null">am_serial_num = #{amSerialNum},</if>
+			<if test="amCategory != null">am_category = #{amCategory}</if>
         </set>
         WHERE
         am_id = #{amId};

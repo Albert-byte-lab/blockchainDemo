@@ -31,4 +31,7 @@ public interface AviationMaterialService {
     //零部件信息录入
     int addOneAm(AviationMaterial aviationMaterial);
 
+    //更新零部件信息
+    int modifyOneAm(AviationMaterial aviationMaterial);
+
 }

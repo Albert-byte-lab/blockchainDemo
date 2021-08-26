@@ -111,4 +111,49 @@
         </trim>
 	</insert>
 
+    <select id="queryNewId" resultType="Long">
+		SELECT
+		MAX(history_id)
+		FROM
+		history
+		WHERE
+		am_id = #{amId}
+	</select>
+
+    <select id="queryByHistoryId"  parameterType="Long"  resultType="com.loongrise.entity.History">
+		SELECT
+		history_id,
+        prev_id,
+        next_id,
+        hashcode,
+        epc,
+        tid,
+        name,
+        address,
+        date,
+        am_id,
+        am_category
+		FROM
+		history
+		WHERE
+		history_id = #{historyId};
+	</select>
+    <update id="updateHistory" parameterType="com.loongrise.entity.History">
+        UPDATE history
+        <set>
+            <if test="pre != null">prev_id = #{pre},</if>
+            <if test="next != null">next_id = #{next},</if>
+            <if test="hashCode != null">hashcode = #{hashCode},</if>
+            <if test="epc != null">epc = #{epc},</if>
+            <if test="tid != null">tid = #{tid},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="address != null">address = #{address},</if>
+            <if test="date != null">date = #{date},</if>
+            <if test="amId != null">am_id = #{amId},</if>
+            <if test="amCategory != null">am_category = #{amCategory}</if>
+        </set>
+        WHERE
+        history_id = #{historyId};
+    </update>
+
 </mapper>

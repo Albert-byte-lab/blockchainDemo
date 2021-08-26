@@ -17,4 +17,6 @@ public interface RFIDService {
     List<RFID> getRFIDListByEpcs(List<String> epcList);
 
     RFID queryRFIDById(Long rdidID);
+
+    RFID getRFIDByAmId(long amId);
 }

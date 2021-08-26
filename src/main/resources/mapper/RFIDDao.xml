@@ -40,5 +40,13 @@
 		VALUES(#{epc},#{tid},#{amId});
 	</insert>
 
+	<select id="queryRFIDByAmId" parameterType="Long"  resultType="com.loongrise.entity.RFID">
+		SELECT
+        *
+		FROM
+		rfid
+		WHERE
+		am_id = #{amId}
+	</select>
 
 </mapper>

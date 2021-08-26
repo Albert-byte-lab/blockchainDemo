@@ -29,4 +29,19 @@ public class HistoryServiceImpl implements HistoryService {
     public List<History> getHistoryListByAmId(History history) {
         return historyDao.queryHistoryListByAmId(history);
     }
+
+    @Override
+    public long getNewAmId(long amId) {
+        return historyDao.queryNewId(amId);
+    }
+
+    @Override
+    public History getHistoryByHistoryId(long historyId) {
+        return historyDao.queryByHistoryId(historyId);
+    }
+
+    @Override
+    public int modifyHistory(History history) {
+        return historyDao.updateHistory(history);
+    }
 }

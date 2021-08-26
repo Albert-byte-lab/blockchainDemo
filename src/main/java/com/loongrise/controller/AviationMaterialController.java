@@ -4,8 +4,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.loongrise.entity.*;
 import com.loongrise.service.*;
 import com.loongrise.util.HttpServletRequestUtil;
+import com.sun.javafx.collections.ImmutableObservableList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -203,23 +205,133 @@ public class AviationMaterialController {
         return  modelAndView;
     }
 
-    @GetMapping("/editam/{amId}")
-    public String editam(Model model, @PathVariable Long amId){
-        System.out.println(amId);
-        AviationMaterial am = aviationMaterialService.getAmById(amId);
-        RFID rfid = rfidService.queryRFIDById(amId);
-                model.addAttribute("am",am);
-                model.addAttribute("rfid",rfid);
-        return "editAm";
+    @GetMapping("/showambyamid/{amId}")
+    private ModelAndView showAmByAmId(@PathVariable String amId,HttpServletRequest request){
+        Long realAmId = Long.parseLong(amId);
+        System.out.println("amId是:"+realAmId);
+        UserInfo userInfo = (UserInfo) request.getSession().getAttribute("userInfo");
+        ModelAndView model = null;
+        AviationMaterial am = aviationMaterialService.getAmById(realAmId);
+        if(am != null){
+            System.out.println("am.getAmName()的值是: "+am.getAmName());
+            request.setAttribute("am",am);
+            if(userInfo.getUserId() == 2){
+                model = new ModelAndView("editAm");
+            }else if(userInfo.getUserId() == 3){
+                model = new ModelAndView("editAmTwo");
+            }
+        }
+        return model;
     }
 
-    @PostMapping("/editam/{amId}")
-    public String updateamHistory(Model model, RFID rfId,AviationMaterial am,@PathVariable Long amId){
-        System.out.println(rfId.getEpc());
-        System.out.println("_______________________________");
-        System.out.println(am.getAmDesc());
-        System.out.println(amId+"_____________________________");
-        return "test";
+    //飞机制造商工程部门更新零部件信息
+    @RequestMapping(value = "/modifyam",method = RequestMethod.POST)
+    @ResponseBody
+    private Map<String,Object> modifyAm(HttpServletRequest request){
+        Map<String,Object> modelMap = new HashMap<>();
+        ObjectMapper mapper = new ObjectMapper();
+        String rfidStr = HttpServletRequestUtil.getString(request,"rfidStr");
+        String amStr = HttpServletRequestUtil.getString(request,"amStr");
+        RFID rfid = null;
+        AviationMaterial am = null;
+        try{
+            am = mapper.readValue(amStr,AviationMaterial.class);
+            rfid = mapper.readValue(rfidStr,RFID.class);
+            if(am != null && rfid != null){
+                //获取零部件原先的amCategory的值
+                AviationMaterial amTemp = aviationMaterialService.getAmById(am.getAmId());
+                long amCategory = amTemp.getAmCategory();
+                long newAmCategory = amCategory + 1;
+                am.setAmCategory(newAmCategory);
+                //在原有的amCategory值的基础之上加1再更新零部件信息。
+               int num1 =  aviationMaterialService.modifyOneAm(am);
+               //2.新增rfid记录
+               rfid.setAmId(am.getAmId());
+               int num2 = rfidService.addRFID(rfid);
+               if(num1 > 0 && num2 > 0){
+                  //3.更新历史纪录表
+                   UserInfo userInfo = (UserInfo) request.getSession().getAttribute("userInfo");
+                   History history = new History();
+                   history.setDate(new Date());
+                   history.setAddress(userInfo.getAddress());
+                   history.setName(userInfo.getName());
+                   history.setAmCategory(newAmCategory);
+                   history.setEpc(rfid.getEpc());
+                   history.setTid(rfid.getTid());
+                   history.setAmId(am.getAmId());
+                   //更新当前结点的pre和之前结点的next
+                   long preHistoryId = historyService.getNewAmId(am.getAmId());
+                   history.setPre(preHistoryId);
+                   //将这些数据新增至历史记录表。
+                   int result = historyService.addHistory(history);
+                   if(result > 0){
+                       History history2 = historyService.getHistoryByHistoryId(preHistoryId);
+                       //获取最新 新增的那条记录的history值
+                       history2.setNext(historyService.getNewAmId(am.getAmId()));
+                       int i = historyService.modifyHistory(history2);
+                       if(i > 0){
+                           modelMap.put("success",true);
+                       }
+                   }
+               }
+            }
+        }catch (IOException e){
+           modelMap.put("success",false);
+        }
+        return modelMap;
+    }
+
+    //零部件供应商更新零部件
+    @RequestMapping(value = "/modifyamtwo",method = RequestMethod.POST)
+    @ResponseBody
+    private Map<String,Object> modifyAmTwo(HttpServletRequest request){
+        Map<String,Object> modelMap = new HashMap<>();
+        ObjectMapper mapper = new ObjectMapper();
+        String amStr = HttpServletRequestUtil.getString(request,"amStr");
+        AviationMaterial am = null;
+        try{
+            am = mapper.readValue(amStr,AviationMaterial.class);
+            if(am != null){
+                //获取零部件原先的amCategory的值
+                AviationMaterial amTemp = aviationMaterialService.getAmById(am.getAmId());
+                long amCategory = amTemp.getAmCategory();
+                long newAmCategory = amCategory + 1;
+                am.setAmCategory(newAmCategory);
+                //在原有的amCategory值的基础之上加1再更新零部件信息。
+                int num1 =  aviationMaterialService.modifyOneAm(am);
+                if(num1 > 0){
+                    //2.获取零部件对应的rfid的信息
+                    RFID rfid = rfidService.getRFIDByAmId(am.getAmId());
+                    //3.更新历史纪录表
+                    UserInfo userInfo = (UserInfo) request.getSession().getAttribute("userInfo");
+                    History history = new History();
+                    history.setDate(new Date());
+                    history.setAddress(userInfo.getAddress());
+                    history.setName(userInfo.getName());
+                    history.setAmCategory(newAmCategory);
+                    history.setEpc(rfid.getEpc());
+                    history.setTid(rfid.getTid());
+                    history.setAmId(am.getAmId());
+                    //更新当前结点的pre和之前结点的next
+                    long preHistoryId = historyService.getNewAmId(am.getAmId());
+                    history.setPre(preHistoryId);
+                    //将这些数据新增至历史记录表。
+                    int result = historyService.addHistory(history);
+                    if(result > 0){
+                        History history2 = historyService.getHistoryByHistoryId(preHistoryId);
+                        //获取最新 新增的那条记录的history值
+                        history2.setNext(historyService.getNewAmId(am.getAmId()));
+                        int i = historyService.modifyHistory(history2);
+                        if(i > 0){
+                            modelMap.put("success",true);
+                        }
+                    }
+                }
+            }
+        }catch (IOException e){
+            modelMap.put("success",false);
+        }
+        return modelMap;
     }
 
 }

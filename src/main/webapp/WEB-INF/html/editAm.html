@@ -68,6 +68,9 @@
                 <li th:if = "${session.userInfo.getUserId()} == 5">
                     <a href=""><i class="bx bx-right-arrow-alt"></i>零部件过往信息查看及录入</a>
                 </li>
+                <li>
+                    <a href="javascript:history.go(-1)"><i class="bx bx-right-arrow-alt"></i>返回</a>
+                </li>
             </ul>
         </li>
     </ul>
@@ -419,49 +422,51 @@
                                 <div class="card-title d-flex align-items-center">
                                     <div><i class='bx bxs-user mr-1 font-24 text-primary'></i>
                                     </div>
-                                    <h4 class="mb-0 text-primary">修改零部件信息</h4>
+                                    <h4 class="mb-0 text-primary">更新零部件信息</h4>
                                 </div>
                                 <hr/>
-                                    <form th:action="@{'/am/editam/'+${am.amId}}" method="post">
-                                    <div class="form-body">
+                                <div class="form-body" >
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label>零部件名称</label>
-                                            <input type="text" class="form-control radius-30" id = "amName" th:value="${am.amName}" />
+                                            <input type="text" class="form-control radius-30" id = "amName" th:value="${am.amName}" readonly="readonly"/>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label>简介</label>
-                                            <input type="text" class="form-control radius-30"  id = "amDesc" th:value="${am.amDesc}"/>
+                                            <input type="text" class="form-control radius-30"  id = "amDesc" th:value="${am.amDesc}" readonly="readonly"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label>年限</label>
-                                        <input type="text" class="form-control radius-30" id="amExpireTime" th:value="${am.amExpireTime}"/>
+                                        <label>年限(单位:月)</label>
+                                        <input type="text" class="form-control radius-30" id="amExpireTime" th:value="${am.amExpireTime}" readonly="readonly"/>
                                     </div>
                                         <div class="form-group">
                                             <label>合格证编号</label>
-                                            <input type="text" class="form-control radius-30" id="amQualifiedNum" th:value="${am.amQualifiedNum}"/>
+                                            <input type="text" class="form-control radius-30" id="amQualifiedNum"/>
                                         </div>
                                         <div class="form-group">
                                             <label>EPC号</label>
-                                            <input type="text" class="form-control radius-30" id="epc" th:value="${rfid.epc}"/>
+                                            <input type="text" class="form-control radius-30" id="epc" />
                                         </div>
                                         <div class="form-group">
                                             <label>TID</label>
-                                            <input type="text" class="form-control radius-30" id="tid" th:value="${rfid.tid}"/>
+                                            <input type="text" class="form-control radius-30" id="tid" />
                                         </div>
                                     <div class="form-group">
                                         <label>所属机型</label>
-                                        <select class="single-select form-control" id="aircraftList">
-
-                                        </select>
+                                        <input type="text" class="form-control radius-30" id="aircraft" th:value="${am.aircraft.acName}" readonly="readonly" />
+                                    </div>
+                                    <div class="form-group" style="display: none">
+                                        <label>amId值</label>
+                                        <input type="text" class="form-control radius-30" id="amId" th:value="${amId}" readonly="readonly" />
                                     </div>
                                     <div class="btn-group mt-3 w-100">
                                         <button class="btn btn-outline-info m-1 px-3 radius-30 btn-block " id="submit" type="submit">提交</button>
                                         <button type="button" class="btn btn-outline-info m-1 px-5 radius-30 "><a href="javascript:history.go(-1)">返回</a></button>
-                                        </div>
+
                                     </div>
-                                    </form>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -471,6 +476,7 @@
     </div>
     <!--end page-wrapper-->
 </div>
+
 <script th:src="@{/resources/assets/js/jquery.min.js}"></script>
 <script th:src="@{/resources/assets/js/popper.min.js}"></script>
 <script th:src="@{/resources/assets/js/bootstrap.min.js}"></script>
@@ -481,7 +487,7 @@
 <script th:src="@{/resources/logout.js}" type="text/javascript"></script>
 
 <!-- App JS -->
-
+<script th:src="@{/resources/editAm.js}"></script>
 <script th:src="@{/resources/assets/js/app.js}"></script>
 </body>
 </html>

@@ -15,5 +15,8 @@ public interface RFIDDao {
     //根据epc值获取对应的标签信息
     RFID queryRFIDByEpc(String epc);
 
+    //根据amId获取对应的rfid信息
+    RFID queryRFIDByAmId(long amId);
+
 
 }
