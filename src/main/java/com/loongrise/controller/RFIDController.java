@@ -13,10 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping(value="/rfid")
@@ -66,7 +63,7 @@ public class RFIDController {
     private Map<String,Object> getRFIDByEpc(HttpServletRequest request){
         Map<String,Object> modelMap = new HashMap<>();
         //获取前端的epc值
-        String epc = HttpServletRequestUtil.getString(request,"epc");
+        String epc = request.getParameter("epc");
         //根据epc值进行查询操作
         RFID rfid = rfidService.getRFIDByEpc(epc);
         if(rfid != null){
@@ -90,25 +87,17 @@ public class RFIDController {
     @ResponseBody
     private Map<String,Object> getRFIDListByEpcList(HttpServletRequest request){
         Map<String,Object> modelMap = new HashMap<>();
-        //获取前端封装的json对象数组
-        String epcListStr = HttpServletRequestUtil.getString(request,"epcListStr");
-        ObjectMapper mapper = new ObjectMapper();
-        //用来封装获取到的多个epc值。
-        List<String> epcList = new ArrayList<>();
-        try {
-            RFID[] rfids = mapper.readValue(epcListStr,RFID[].class);
-            System.out.println("数组长度是: "+rfids.length);
-            for(RFID rfid:rfids){
-                System.out.println("epc值为:"+rfid.getEpc());
-                epcList.add(rfid.getEpc());
-            }
+
+        String[] epcs = request.getParameterValues("epcList");
+        List<String> epcList = Arrays.asList(epcs);
+        if(epcList != null){
             List<RFID> rfidList = rfidService.getRFIDListByEpcs(epcList);
             if(rfidList != null){
                 modelMap.put("rfidList",rfidList);
                 modelMap.put("success",true);
+            }else{
+                modelMap.put("success",false);
             }
-        } catch (IOException e) {
-            modelMap.put("success",false);
         }
         return modelMap;
     }
