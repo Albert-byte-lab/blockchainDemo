@@ -93,7 +93,8 @@
 		a.ac_id = ac.ac_id
 		WHERE
 		a.am_category = 0
-		ORDER BY am_id Asc;
+		ORDER BY am_id Desc
+		limit 0,10;
 	</select>
 
 
@@ -118,7 +119,8 @@
 		a.ac_id = ac.ac_id
 		WHERE
 		a.am_category &lt;= 1
-		ORDER BY am_id ASC;
+		ORDER BY am_id Desc
+		limit 0,10
 	</select>
 
 
@@ -143,7 +145,8 @@
 		a.ac_id = ac.ac_id
 		WHERE
 		a.am_category &lt;= 2
-		ORDER BY am_id ASC;
+		ORDER BY am_id Desc
+		limit 0,10;
 	</select>
 
 
@@ -168,7 +171,8 @@
 		a.ac_id = ac.ac_id
 		WHERE
 		a.am_category &lt;= 3
-		ORDER BY am_id ASC;
+		ORDER BY am_id DESC
+		limit 0,10;
 	</select>
 
 
@@ -193,7 +197,8 @@
 		a.ac_id = ac.ac_id
 		WHERE
 		a.am_category &lt;= 4
-		ORDER BY am_id ASC;
+		ORDER BY am_id DESC
+		limit 0,10
 	</select>
 
 
