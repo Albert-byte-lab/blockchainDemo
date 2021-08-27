@@ -31,7 +31,7 @@ $(function(){
 				if (data.success) {
 					alert("更新成功!");
 					//重新获取数据库的值进行刷新。
-					window.location.href = "/blockchainDemo/am/oneshowam";
+					window.location.href = "/blockchainDemo/am/twoshowam";
 				} else {
 					alert('提交失败！');
 				}
