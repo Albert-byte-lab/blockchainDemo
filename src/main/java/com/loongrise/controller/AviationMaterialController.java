@@ -31,6 +31,9 @@ public class AviationMaterialController {
     @Autowired
     private AircraftService aircraftService;
 
+    @Autowired
+    private  ChangeStatusService changeStatusService;
+
     @RequestMapping(value="/showam",method= RequestMethod.GET)
     private ModelAndView showAm(HttpServletRequest request){
         ModelAndView model = null;
@@ -103,7 +106,11 @@ public class AviationMaterialController {
                     System.out.println("newId是:------"+newId);
                     int i = historyService.addHistory(history);
                     if(i>0){
-                        modelMap.put("success",true);
+                        int a = changeStatusService.modifyStatus();
+                        if(a > 0){
+                            modelMap.put("success",true);
+                        }
+
                     }
                 }
             }
@@ -270,7 +277,10 @@ public class AviationMaterialController {
                        history2.setNext(historyService.getNewAmId(am.getAmId()));
                        int i = historyService.modifyHistory(history2);
                        if(i > 0){
-                           modelMap.put("success",true);
+                           int a = changeStatusService.modifyStatus();
+                           if(a > 0){
+                               modelMap.put("success",true);
+                           }
                        }
                    }
                }
@@ -323,7 +333,11 @@ public class AviationMaterialController {
                         history2.setNext(historyService.getNewAmId(am.getAmId()));
                         int i = historyService.modifyHistory(history2);
                         if(i > 0){
-                            modelMap.put("success",true);
+                            int a = changeStatusService.modifyStatus();
+                            if(a > 0){
+                                modelMap.put("success",true);
+                            }
+
                         }
                     }
                 }
@@ -373,7 +387,11 @@ public class AviationMaterialController {
                     history2.setNext(historyService.getNewAmId(am.getAmId()));
                     int p = historyService.modifyHistory(history2);
                     if(p > 0){
-                       model = new ModelAndView("redirect:/am/fourshowam");
+                        int a = changeStatusService.modifyStatus();
+                        if(a > 0){
+                            model = new ModelAndView("redirect:/am/fourshowam");
+                        }
+
                     }
                 }
             }
@@ -421,7 +439,11 @@ public class AviationMaterialController {
                     history2.setNext(historyService.getNewAmId(am.getAmId()));
                     int p = historyService.modifyHistory(history2);
                     if(p > 0){
-                        model = new ModelAndView("redirect:/am/fiveshowam");
+                        int a = changeStatusService.modifyStatus();
+                        if(a > 0){
+                            model = new ModelAndView("redirect:/am/fiveshowam");
+                        }
+
                     }
                 }
             }

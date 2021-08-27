@@ -92,7 +92,8 @@
 		ON
 		a.ac_id = ac.ac_id
 		WHERE
-		a.am_category = 0;
+		a.am_category = 0
+		ORDER BY am_id Asc;
 	</select>
 
 
@@ -116,7 +117,8 @@
 		ON
 		a.ac_id = ac.ac_id
 		WHERE
-		a.am_category &lt;= 1;
+		a.am_category &lt;= 1
+		ORDER BY am_id ASC;
 	</select>
 
 
@@ -140,7 +142,8 @@
 		ON
 		a.ac_id = ac.ac_id
 		WHERE
-		a.am_category &lt;= 2;
+		a.am_category &lt;= 2
+		ORDER BY am_id ASC;
 	</select>
 
 
@@ -164,7 +167,8 @@
 		ON
 		a.ac_id = ac.ac_id
 		WHERE
-		a.am_category &lt;= 3;
+		a.am_category &lt;= 3
+		ORDER BY am_id ASC;
 	</select>
 
 
@@ -188,7 +192,8 @@
 		ON
 		a.ac_id = ac.ac_id
 		WHERE
-		a.am_category &lt;= 4;
+		a.am_category &lt;= 4
+		ORDER BY am_id ASC;
 	</select>
 
 
