@@ -12,6 +12,7 @@ $(function(){
 		var rfid={};
 		am.amId=$('#amId').val();
 		am.amSerialNum=$('#amSerialNum').val();
+		am.amExpireTime=$('#amExpireTime').val();
 
 		var formData = new FormData();
 		formData.append('amStr',JSON.stringify(am));

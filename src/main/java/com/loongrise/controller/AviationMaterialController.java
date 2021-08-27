@@ -334,4 +334,99 @@ public class AviationMaterialController {
         return modelMap;
     }
 
+    //航司 更新结点信息
+    @GetMapping("/modifyamfour/{amId}")
+    @ResponseBody
+    private ModelAndView modifyAmFour(@PathVariable String amId,HttpServletRequest request){
+        Long realAmId = Long.parseLong(amId);
+        System.out.println("amId是:"+realAmId);
+        ModelAndView model = null;
+        //根据amId获取对应的零部件信息
+        AviationMaterial am = aviationMaterialService.getAmById(realAmId);
+        if(am != null){
+            //将结点标识加1
+            long newAmCategory = am.getAmCategory() + 1;
+            am.setAmCategory(newAmCategory);
+            //更新零部件信息
+            int i = aviationMaterialService.modifyOneAm(am);
+            if(i>0){
+                //2.获取零部件对应的rfid的信息
+                RFID rfid = rfidService.getRFIDByAmId(am.getAmId());
+                //3.更新历史纪录表
+                UserInfo userInfo = (UserInfo) request.getSession().getAttribute("userInfo");
+                History history = new History();
+                history.setDate(new Date());
+                history.setAddress(userInfo.getAddress());
+                history.setName(userInfo.getName());
+                history.setAmCategory(newAmCategory);
+                history.setEpc(rfid.getEpc());
+                history.setTid(rfid.getTid());
+                history.setAmId(am.getAmId());
+                //更新当前结点的pre和之前结点的next
+                long preHistoryId = historyService.getNewAmId(realAmId);
+                history.setPre(preHistoryId);
+                //将这些数据新增至历史记录表。
+                int result = historyService.addHistory(history);
+                if(result > 0){
+                    History history2 = historyService.getHistoryByHistoryId(preHistoryId);
+                    //获取最新 新增的那条记录的history值
+                    history2.setNext(historyService.getNewAmId(am.getAmId()));
+                    int p = historyService.modifyHistory(history2);
+                    if(p > 0){
+                       model = new ModelAndView("redirect:/am/fourshowam");
+                    }
+                }
+            }
+        }
+        return  model;
+    }
+
+    //飞机修理厂 更新结点信息
+    @GetMapping("/modifyamfive/{amId}")
+    @ResponseBody
+    private ModelAndView modifyAmFive(@PathVariable String amId,HttpServletRequest request){
+        Long realAmId = Long.parseLong(amId);
+        System.out.println("amId是:"+realAmId);
+        ModelAndView model = null;
+        //根据amId获取对应的零部件信息
+        AviationMaterial am = aviationMaterialService.getAmById(realAmId);
+        if(am != null){
+            //将结点标识加1
+            long newAmCategory = am.getAmCategory() + 1;
+            am.setAmCategory(newAmCategory);
+            am.setAmUsedTime(am.getAmUsedTime() + 1);
+            //更新零部件信息
+            int i = aviationMaterialService.modifyOneAm(am);
+            if(i>0){
+                //2.获取零部件对应的rfid的信息
+                RFID rfid = rfidService.getRFIDByAmId(am.getAmId());
+                //3.更新历史纪录表
+                UserInfo userInfo = (UserInfo) request.getSession().getAttribute("userInfo");
+                History history = new History();
+                history.setDate(new Date());
+                history.setAddress(userInfo.getAddress());
+                history.setName(userInfo.getName());
+                history.setAmCategory(newAmCategory);
+                history.setEpc(rfid.getEpc());
+                history.setTid(rfid.getTid());
+                history.setAmId(am.getAmId());
+                //更新当前结点的pre和之前结点的next
+                long preHistoryId = historyService.getNewAmId(realAmId);
+                history.setPre(preHistoryId);
+                //将这些数据新增至历史记录表。
+                int result = historyService.addHistory(history);
+                if(result > 0){
+                    History history2 = historyService.getHistoryByHistoryId(preHistoryId);
+                    //获取最新 新增的那条记录的history值
+                    history2.setNext(historyService.getNewAmId(am.getAmId()));
+                    int p = historyService.modifyHistory(history2);
+                    if(p > 0){
+                        model = new ModelAndView("redirect:/am/fiveshowam");
+                    }
+                }
+            }
+        }
+        return  model;
+    }
+
 }
