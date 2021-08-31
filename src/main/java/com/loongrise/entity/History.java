@@ -111,4 +111,5 @@ public class History {
     public void setDate(Date date) {
         this.date = date;
     }
+
 }
